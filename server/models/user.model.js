@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = (sequelize, DataTypes) => {
+const sequelize = require('./index');
+const { DataTypes } = require('sequelize');
 
-  const user = sequelize.define('user', {
-
+  const User = sequelize.define('user', {
     mail: {
       type: DataTypes.STRING,
       allowNull: false
@@ -12,29 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     }
-
-    // The timestamp is added automatically by Sequelize
-    // http://docs.sequelizejs.com/manual/tutorial/models-definition.html#timestamps
   });
   user.associate = model => {
     user.hasMany(model.tasting);
   };
-  return user;
-}
 
-
-// 'use strict';
-
-// module.exports = (sequelize, DataTypes) => sequelize.define('User', {
-//   mail: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   },
-//   password: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   }
-
-//   // The timestamp is added automatically by Sequelize
-//   // http://docs.sequelizejs.com/manual/tutorial/models-definition.html#timestamps
-// });
+module.exports = User;

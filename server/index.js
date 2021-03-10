@@ -2,8 +2,9 @@
 
 const express = require("express");
 const router = require('./router');
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const cors = require("cors");
+require('dotenv').config();
 
 const db = require("./models");
 db.sequelize.sync();

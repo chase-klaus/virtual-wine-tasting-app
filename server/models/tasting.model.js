@@ -1,12 +1,8 @@
 'use strict';
+const sequelize = require('./index');
+const {DataTypes} = require('sequelize');
 
-const Sequelize = require('sequelize');
-
-// The timestamp is added automatically by Sequelize
-module.exports = (sequelize, DataTypes) => {
-
-  const tasting = sequelize.define('tasting', {
-
+  const Tasting = sequelize.define('tasting', {
     winery: {
       type: DataTypes.STRING,
       allowNull: false
@@ -48,10 +44,5 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   });
-  tasting.associate = model => {
-    tasting.belongsTo(model.user);
-  };
-  return tasting;
 
-}
-
+module.exports = Tasting;
