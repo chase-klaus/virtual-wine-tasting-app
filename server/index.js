@@ -1,14 +1,14 @@
 'use strict';
 
 const express = require("express");
+require('dotenv').config(); 
 const router = require('./router');
 // const bodyParser = require("body-parser");
 const cors = require("cors");
-require('dotenv').config();
 
-const db = require("./models");
-db.sequelize.sync();
-// db.sequelize.sync({force: true});
+const sequelize = require("./models");
+sequelize.sync();
+
 
 // //In development, you may need to drop existing tables and re-sync database. Just use force: true as following code:
 // db.sequelize.sync({ force: true }).then(() => {
