@@ -32,11 +32,11 @@ const {DataTypes} = require('sequelize');
       allowNull: false
     },
     dominantFlavors: {
-      type: DataTypes.ARRAY(Sequelize.TEXT),
+      type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: true
     },
     arrPossibleFlavors: {
-      type: DataTypes.ARRAY(Sequelize.TEXT),
+      type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: true
     },
     overallRating: {

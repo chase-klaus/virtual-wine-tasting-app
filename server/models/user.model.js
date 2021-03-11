@@ -13,8 +13,5 @@ const { DataTypes } = require('sequelize');
       allowNull: false
     }
   });
-  user.associate = model => {
-    user.hasMany(model.tasting);
-  };
 
 module.exports = User;

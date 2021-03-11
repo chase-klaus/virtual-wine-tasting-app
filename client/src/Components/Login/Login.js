@@ -38,14 +38,18 @@ export default function Login({ loginUser }) {
 
   async function checkIfUserIsInDatabase() {
     const users = await ApiService.getUsers()
-    users.map(user => {
-      if (user.mail === mail) {
-        setIsRegistered(true);
-        setPasswordFromDB(user.password)
-        setUserId(user.id)
-        console.log("found")
-      }
-    })
+    try {
+      users.map(user => {
+        if (user.mail === mail) {
+          setIsRegistered(true);
+          setPasswordFromDB(user.password)
+          setUserId(user.id)
+          console.log("found")
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   function handleChangeMail(event) {

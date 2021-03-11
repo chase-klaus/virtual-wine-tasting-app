@@ -47,9 +47,7 @@ exports.create = async (req, res) => {
 // Retrieve all Tastings from the database.
 exports.findAll = (req, res) => {
   const id = req.params.id;
-  // const user = req.query.user;
-  // let condition = user ? { user: { [Op.iLike]: `%${user}%` } } : null;
-  //Tasting.findAll({ where: condition })
+
   Tasting.findAll({where: {userId: id}})
     .then(data => {
       res.send(data);
@@ -89,55 +87,13 @@ exports.delete = (req, res) => {
 
 // Find a single Tasting with an id
 exports.findOne = (req, res) => {
-
 };
 
 // Update a Tasting by the id in the request
 exports.update = (req, res) => {
-
 };
 
 
-
-
-
-
-// const db = require('../models');
-
-// exports.getAllTastings = async ctx => {
-//   try {
-//     ctx.body = await db.Tasting.findAll();
-//   } catch (error) {
-//     console.log('GET TASTING ERROR', error); //eslint-disable-line no-console
-//     ctx.status = 500;
-//   }
-// };
-
-// exports.postTasting = async ctx => {
-//   const tasting = ctx.request.body;
-//   try {
-//     await db.Tasting.create({
-//       user: tasting.user,
-//       winery: tasting.winery,
-//       year: tasting.year,
-//       grape: tasting.grape,
-//       fruit: tasting.fruit,
-//       acidity: tasting.acidity,
-//       tannins: tasting.tannins,
-//       body: tasting.body,
-//       dominantFlavors: tasting.dominantFlavors,
-//       arrPossibleFlavors: tasting.arrPossibleFlavors,
-//       overallRating: tasting.overallRating
-//     });
-//     ctx.status = 200;
-//   } catch (error) {
-//     console.log('POST TASTING ERROR', error); //eslint-disable-line no-console
-//     ctx.status = 500;
-//   }
-// };
-
-
-
-
-
-
+// maybe send an update --> PUT 
+// update opinions 
+// on the final --> put additional notes 
