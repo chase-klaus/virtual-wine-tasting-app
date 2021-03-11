@@ -6,8 +6,6 @@ const router = require('./router');
 const cors = require("cors");
 const app = express();
 const sequelize = require("./models");
-const User = require('./models/user.model');
-const Tasting = require('./models/tasting.model');
 
 app.use(cors());
 

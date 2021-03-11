@@ -1,11 +1,11 @@
 'use strict';
 
-const db = require("../models");
-const Tasting = db.tasting;
+// const db = require("../models");
+const Tasting = require('../models/tasting.model');
 // const Op = db.Sequelize.Op;
 
 // Create and Save a new Tasting
-exports.create = async (req, res) => {
+const create = async (req, res) => {
   // Validate request
   //if (!req.body.user) {
   if (!req.body.winery) {
@@ -45,7 +45,7 @@ exports.create = async (req, res) => {
 };
 
 // Retrieve all Tastings from the database.
-exports.findAll = (req, res) => {
+const findAll = (req, res) => {
   const id = req.params.id;
 
   Tasting.findAll({where: {userId: id}})
@@ -60,40 +60,42 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Delete a Tasting with the specified id in the request
-exports.delete = (req, res) => {
-  const id = req.params.id;
+// // Delete a Tasting with the specified id in the request
+// const deleteTasting = (req, res) => {
+//   const id = req.params.id;
 
-  Tasting.destroy({
-    where: { id: id }
-  })
-    .then(num => {
-      if (num == 1) {
-        res.send({
-          message: "Tasting was deleted successfully!"
-        });
-      } else {
-        res.send({
-          message: `Cannot delete Tasting with id=${id}. Maybe Tasting was not found!`
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Could not delete Tasting with id=" + id
-      });
-    });
-};
+//   Tasting.destroy({
+//     where: { id: id }
+//   })
+//     .then(num => {
+//       if (num == 1) {
+//         res.send({
+//           message: "Tasting was deleted successfully!"
+//         });
+//       } else {
+//         res.send({
+//           message: `Cannot delete Tasting with id=${id}. Maybe Tasting was not found!`
+//         });
+//       }
+//     })
+//     .catch(err => {
+//       res.status(500).send({
+//         message: "Could not delete Tasting with id=" + id
+//       });
+//     });
+// };
 
 // Find a single Tasting with an id
-exports.findOne = (req, res) => {
+const findOne = (req, res) => {
 };
 
 // Update a Tasting by the id in the request
-exports.update = (req, res) => {
+const update = (req, res) => {
 };
 
 
 // maybe send an update --> PUT 
 // update opinions 
 // on the final --> put additional notes 
+
+module.exports = { create, findOne, update }

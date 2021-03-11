@@ -142,8 +142,8 @@ export default function WineTasting({ user }) {
               <option name='syrah'>Syrah</option>
               <option name='riesling'>Riesling</option>
               <option name='gewürztraminer'>Gewürztraminer</option>
-              <option name='cabernetSauvignon'>CabernetSauvignon</option>
-              <option name='pinotNoir'>PinotNoir</option>
+              <option name='cabernetSauvignon'>Cabernet Sauvignon</option>
+              <option name='pinotNoir'>Pinot Noir</option>
             </select>
             <button type="submit" class="start__tasting__btn">start tasting</button>
           </form>
