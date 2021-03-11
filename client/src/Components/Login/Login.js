@@ -109,7 +109,7 @@ export default function Login({ loginUser }) {
             onChange={handleChangePassword}
             placeholder="Type in your password ..."
           ></input>
-          <button type="submit" class='login__btn'>login</button>
+          <button type="submit" className='login__btn'>login</button>
         </form>
       </div>
       <div className='go__to__register'>to create a new user click <div onClick={() => setUserExists(false)} className='go__to__register__btn'>here</div></div>

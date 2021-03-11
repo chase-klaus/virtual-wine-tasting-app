@@ -5,13 +5,13 @@ const user = require("./controllers/user.controller.js");
   
   // TASTINGS
   // Create a new Tasting
-  router.post("/api/tastings", tastings.create);
+  // router.post("/api/tastings", tastings.create);
 
   // Retrieve all tastings
-  router.get("/api/tastings/:id", tastings.findAll);
+  // router.get("/api/tastings/:id", tastings.findAll);
 
   // Delete a Tasting with id
-  router.delete("/api/tastings/:id", tastings.delete);
+  // router.delete("/api/tastings/:id", tastings.delete);
 
   // // Retrieve a single Tasting with id
   // router.get("/:id", tastings.findOne);
