@@ -6,5 +6,6 @@ const associationOpts = {
   as: 'tastings'
 };
 
-Tasting.belongsTo(User, associationOpts)
-Users.hasMany(Tasting, associationOpts)
+Tasting.belongsTo(User, associationOpts);
+Users.hasMany(Tasting, associationOpts);
+

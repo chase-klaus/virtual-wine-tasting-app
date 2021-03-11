@@ -3,18 +3,15 @@ const router = require("express").Router();
 const tastings = require("./controllers/tasting.controller.js");
 const user = require("./controllers/user.controller.js");
   
-//   // TASTINGS
-//   // Create a new Tasting
-//   router.post("/api/tastings", tastings.create);
+  // TASTINGS
+  // Create a new Tasting
+  // router.post("/api/tastings", tastings.create);
 
-//   // Retrieve all tastings
-//   router.get("/api/tastings/:id", tastings.findAll);
-// // 
-//   // Delete a Tasting with id
-//   // router.delete("/api/tastings/:id", tastings.delete);
+  // Retrieve all tastings
+  // router.get("/api/tastings/:id", tastings.findAll);
 
-//   // // Retrieve a single Tasting with id
-//   // router.get("/:id", tastings.findOne);
+  // Delete a Tasting with id
+  // router.delete("/api/tastings/:id", tastings.delete);
 
 //   // // Update a Tasting with id
 //   // router.put("/:id", tastings.update);
