@@ -1,7 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FC, ReactElement } from 'react';
+import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import ApiService from '../ApiService';
+
+
+// type LoginProps = {
+//   loginUser: string
+// }
+
+type InputEvent = React.ChangeEvent<HTMLInputElement>;
+type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
+// interface IUser = 
 
 export default function Login({ loginUser }) {
 
@@ -11,7 +21,7 @@ export default function Login({ loginUser }) {
   const [userId, setUserId] = useState(0);
   const [isRegistered, setIsRegistered] = useState(false);
   const [passwordFromDB, setPasswordFromDB] = useState("");
-  const [users, setUsers] = useState([])
+  // const [users, setUsers] = useState([])
 
   // REGISTRATION - STATES
   const [newMail, setNewMail] = useState("");
@@ -24,10 +34,10 @@ export default function Login({ loginUser }) {
     checkIfUserIsInDatabase()
   }, [mail])
 
-  async function getAllUsers() {
-    const users = await ApiService.getUsers()
-    setUsers(users)
-  }
+  // async function getAllUsers() {
+  //   const users = await ApiService.getUsers()
+  //   setUsers(users)
+  // }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -52,24 +62,24 @@ export default function Login({ loginUser }) {
     }
   }
 
-  function handleChangeMail(event) {
+  function handleChangeMail(event:InputEvent) {
     if (error) setError(false);
     setMail(event.target.value);
     checkIfUserIsInDatabase()
   }
 
-  function handleChangePassword(event) {
+  function handleChangePassword(event:InputEvent) {
     if (error) setError(false);
     setPassword(event.target.value);
   }
 
   //REGISTRATION - FUNCTIONS
-  function handleChangeNewMail(event) {
+  function handleChangeNewMail(event:InputEvent) {
     if (error) setError(false);
     setNewMail(event.target.value);
   }
 
-  function handleChangeNewPassword(event) {
+  function handleChangeNewPassword(event:InputEvent) {
     if (error) setError(false);
     setNewPassword(event.target.value);
   }
@@ -89,7 +99,8 @@ export default function Login({ loginUser }) {
     setTimeout(function () { setUserExists(true); }, 1500);
   }
 
-  return (<div>
+  return (
+    <div>
 
     {userExists === true ? (<div className="centered__container__login">
       <div className='login__headline'><h2>User Login</h2></div>
@@ -131,7 +142,7 @@ export default function Login({ loginUser }) {
             onChange={handleChangeNewPassword}
             placeholder="Type in your password ..."
           ></input>
-          <button type="submit" class='login__btn' onClick={() => console.log(newMail, newPassword)}>register</button>
+          <button type="submit" className='login__btn' onClick={() => console.log(newMail, newPassword)}>register</button>
         </form>
       </div>
     </div>) : (<div className='successfully__registred'>

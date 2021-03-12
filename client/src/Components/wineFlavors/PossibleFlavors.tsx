@@ -10,7 +10,7 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
   const [earthFlavors, setEarthFlavors] = useState({});
   const [otherFlavors, setOtherFlavors] = useState({});
 
-  function updateFruitFlavors(fruit) {
+  function updateFruitFlavors(fruit:string) {
     if (fruitFlavors[fruit] === fruit) {
       delete fruitFlavors[fruit]
       setFruitFlavors(prev => ({
@@ -24,7 +24,7 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
     }
   }
 
-  function updateDryFruitFlavors(dryFruit) {
+  function updateDryFruitFlavors(dryFruit:string) {
     if (dryFruitFlavors[dryFruit] === dryFruit) {
       delete dryFruitFlavors[dryFruit]
       setDryFruitFlavors(prev => ({
@@ -38,7 +38,7 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
     }
   }
 
-  function updateFloralFlavors(floral) {
+  function updateFloralFlavors(floral:string) {
     if (floralFlavors[floral] === floral) {
       delete floralFlavors[floral]
       setFloralFlavors(prev => ({
@@ -52,7 +52,7 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
     }
   }
 
-  function updateHerbalFlavors(herbal) {
+  function updateHerbalFlavors(herbal:string) {
     if (herbalFlavors[herbal] === herbal) {
       delete herbalFlavors[herbal]
       setHerbalFlavors(prev => ({
@@ -66,7 +66,7 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
     }
   }
 
-  function updateSpiceFlavors(spice) {
+  function updateSpiceFlavors(spice:string) {
     if (spiceFlavors[spice] === spice) {
       delete spiceFlavors[spice]
       setSpiceFlavors(prev => ({
@@ -80,7 +80,7 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
     }
   }
 
-  function updateEarthFlavors(earth) {
+  function updateEarthFlavors(earth:string) {
     if (earthFlavors[earth] === earth) {
       delete earthFlavors[earth]
       setEarthFlavors(prev => ({
@@ -94,7 +94,7 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
     }
   }
 
-  function updateOtherFlavors(other) {
+  function updateOtherFlavors(other?:string) {
     if (otherFlavors[other] === other) {
       delete otherFlavors[other]
       setOtherFlavors(prev => ({
@@ -116,31 +116,31 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
           <h2>possible flavors in {grape}</h2>
         </span>
         <div className='possible__flavors'>
-          {wineDB[grape].possibleFlavors.fruits.map((fruit) => <div
+          {wineDB[grape].possibleFlavors.fruits.map((fruit:string) => <div
             onClick={() => updateFruitFlavors(fruit)}
             className={(fruitFlavors[fruit] === fruit ? 'toggled__flavor__box' : '') + ' flavor__box'} ><h6 className='fruit'>fruit flavor</h6>{fruit}</div>)}
 
-          {wineDB[grape].possibleFlavors.dryFruits.map((dryFruit) => <div
+          {wineDB[grape].possibleFlavors.dryFruits.map((dryFruit:string) => <div
             onClick={() => updateDryFruitFlavors(dryFruit)}
             className={(dryFruitFlavors[dryFruit] === dryFruit ? 'toggled__flavor__box' : '') + ' flavor__box'}><h6 className='dry__fruit'>dry fruit flavor</h6>{dryFruit}</div>)}
 
-          {wineDB[grape].possibleFlavors.florals.map((floral) => <div
+          {wineDB[grape].possibleFlavors.florals.map((floral:string) => <div
             onClick={() => updateFloralFlavors(floral)}
             className={(floralFlavors[floral] === floral ? 'toggled__flavor__box' : '') + ' flavor__box'}><h6 className='floral'>floral flavor</h6>{floral}</div>)}
 
-          {wineDB[grape].possibleFlavors.herbs.map((herb) => <div
+          {wineDB[grape].possibleFlavors.herbs.map((herb:string) => <div
             onClick={() => updateHerbalFlavors(herb)}
             className={(herbalFlavors[herb] === herb ? 'toggled__flavor__box' : '') + ' flavor__box'}><h6 className='herbal'>herbal flavor</h6>{herb}</div>)}
 
-          {wineDB[grape].possibleFlavors.spices.map((spice) => <div
+          {wineDB[grape].possibleFlavors.spices.map((spice:string) => <div
             onClick={() => updateSpiceFlavors(spice)}
             className={(spiceFlavors[spice] === spice ? 'toggled__flavor__box' : '') + ' flavor__box'}><h6 className='spice'>spice flavor</h6>{spice}</div>)}
 
-          {wineDB[grape].possibleFlavors.earthFlavors.map((earthFlavor) => <div
+          {wineDB[grape].possibleFlavors.earthFlavors.map((earthFlavor:string) => <div
             onClick={() => updateEarthFlavors(earthFlavor)}
             className={(earthFlavors[earthFlavor] === earthFlavor ? 'toggled__flavor__box' : '') + ' flavor__box'}><h6 className='earth'>eath flavor</h6>{earthFlavor}</div>)}
 
-          {wineDB[grape].possibleFlavors.others.map((other) => <div
+          {wineDB[grape].possibleFlavors.others.map((other?:string) => <div
             onClick={() => updateOtherFlavors(other)}
             className={(otherFlavors[other] === other ? 'toggled__flavor__box' : '') + ' flavor__box'}><h6 className='other'>other flavor</h6>{other}</div>)}
         </div>

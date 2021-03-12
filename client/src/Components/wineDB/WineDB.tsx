@@ -1,3 +1,22 @@
+interface IWineType {
+  grape?: string[],
+  style: string,
+  drinkingTemperature: string, 
+  countries: string[], 
+  dominantFlavors: string[],
+  possibleFlavors: IPossibleFlavors,
+}
+
+interface IPossibleFlavors {
+  fruits?: string[],
+  dryFruits?: string[],
+  florals?: string[],
+  herbs?: string[],
+  spices?: string[],
+  earthFlavors?: string[],
+  others?: string[],
+}
+
 const malbec = {
   grape: ["Malbec"],
   style: "Red",
@@ -107,7 +126,7 @@ const merlot = {
   },
 };
 
-const cabernetsauvignon = {
+const cabernetsauvignon: IWineType = {
   grape: ["Cabernet Sauvignon"],
   style: "Red",
   drinkingTemperature: "Room Temperatur",
@@ -128,7 +147,7 @@ const cabernetsauvignon = {
     "Backing Spcices",
     "Cedar",
   ],
-  possibleFlavors: {
+  possibleFlavors:{
     fruits: [
       "Cranberry",
       "Red Currant",
@@ -161,7 +180,7 @@ const cabernetsauvignon = {
   },
 };
 
-const syrah = {
+const syrah:IWineType = {
   grape: ["Syrah"],
   style: "Red",
   drinkingTemperature: "Room Temperature",
@@ -222,7 +241,7 @@ const syrah = {
   },
 };
 
-const gewürztraminer = {
+const gewürztraminer:IWineType = {
   grape: ["Gewürztraminer"],
   style: "White",
   drinkingTemperature: "Cold",
@@ -245,8 +264,7 @@ const gewürztraminer = {
   },
 };
 
-const riesling = {
-  grape: ["Riesling"],
+const riesling:IWineType = {
   style: "White",
   drinkingTemperature: "Cold",
   countries: ["Germany", "USA", "Australia", "France", "Hungaria"],

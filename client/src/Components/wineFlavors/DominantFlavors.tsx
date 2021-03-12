@@ -7,7 +7,7 @@ export default function DominantFlavors({
 }) {
   const [flavors, setFlavors] = useState({});
 
-  function updateFlavors(flavor) {
+  function updateFlavors(flavor:string) {
     if (flavors[flavor]) {
       delete flavors[flavor];
       setFlavors((prev) => ({
@@ -29,7 +29,7 @@ export default function DominantFlavors({
       </span>
       <div className='container__and__button'>
         <div className="dominant__flavors__container">
-          {wineDB[grape].dominantFlavors.map((flavor) => (
+          {wineDB[grape].dominantFlavors.map((flavor:string) => (
             <div onClick={() => updateFlavors(flavor)} className={(flavors[flavor] === flavor ? 'dominant__flavors__box__toggled' : 'dominant__flavors__box')}>{flavor}</div>
 
           ))}

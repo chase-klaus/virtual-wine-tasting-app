@@ -7,6 +7,13 @@ import bin from "../pictures/bin.svg"
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 
+// do i need to define it or will it be inferred? 
+// interface IValue {
+//   value:number
+// }
+
+// TODO double check that these are correctly named as strings, they could be arrays of strings, actually, but since we are mapping... 
+
 export default function WineCard({ wine }) {
 
   const [value, setValue] = useState(wine.overallRating);
@@ -31,8 +38,8 @@ export default function WineCard({ wine }) {
               <div>Body: {wine.body} / 5</div>
             </div>
             <div className="hover__flavors__wine__card">
-              <div className='wine__card__flavors'>Dominant Flavors: {wine.dominantFlavors.map(flavor => <div className='single__flavor'>{flavor} </div>)}</div>
-              <div className='wine__card__flavors'>PossibleFlavors Flavors: {wine.arrPossibleFlavors.map(flavor => <div className='single__flavor'>{flavor}</div>)}</div>
+              <div className='wine__card__flavors'>Dominant Flavors: {wine.dominantFlavors.map((flavor:string) => <div className='single__flavor'>{flavor} </div>)}</div>
+              <div className='wine__card__flavors'>PossibleFlavors Flavors: {wine.arrPossibleFlavors.map((flavor:string) => <div className='single__flavor'>{flavor}</div>)}</div>
             </div>
           </div>
         </div>
