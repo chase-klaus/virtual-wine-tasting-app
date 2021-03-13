@@ -1,4 +1,4 @@
-interface IWineType {
+export interface IWineType {
   grape?: string[],
   style: string,
   drinkingTemperature: string, 
@@ -7,7 +7,7 @@ interface IWineType {
   possibleFlavors: IPossibleFlavors,
 }
 
-interface IPossibleFlavors {
+export interface IPossibleFlavors {
   fruits?: string[],
   dryFruits?: string[],
   florals?: string[],
@@ -17,7 +17,7 @@ interface IPossibleFlavors {
   others?: string[],
 }
 
-const malbec = {
+const malbec:IWineType = {
   grape: ["Malbec"],
   style: "Red",
   drinkingTemperature: "Room Temperature",
@@ -42,7 +42,7 @@ const malbec = {
   },
 };
 
-const pinotnoir = {
+const pinotnoir:IWineType = {
   grape: ["Pinot Noir"],
   style: "Red",
   drinkingTemperature: "Cellar Temperature",
@@ -88,7 +88,7 @@ const pinotnoir = {
   },
 };
 
-const merlot = {
+const merlot:IWineType = {
   grape: ["Merlot"],
   style: "Red",
   drinkingTemperature: "Room Temperature",
@@ -293,6 +293,8 @@ const riesling:IWineType = {
     others: [""],
   },
 };
+
+
 
 const WineDB = {
   malbec: malbec,

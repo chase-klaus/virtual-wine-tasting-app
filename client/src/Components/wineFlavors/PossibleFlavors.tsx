@@ -1,16 +1,55 @@
-import { useState } from 'react';
+import * as React from 'react';
+import { useState} from 'react';
+import {IWineType, IPossibleFlavors} from '../wineDB/WineDB'
+interface IWineDB {
+  malbec: IWineType,
+  pinotnoir: IWineType,
+  merlot: IWineType,
+  cabernetsauvignon: IWineType,
+  syrah: IWineType,
+  gewürztraminer: IWineType,
+  riesling: IWineType,
+}
+// interface IWineType {
+//   grape: string[],
+//   style: string,
+//   drinkingTemperature: string, 
+//   countries: string[], 
+//   dominantFlavors: string[],
+//   possibleFlavors: IPossibleFlavors,
+// }
+// interface IPossibleFlavors {
+//   fruits?: string[],
+//   dryFruits?: string[],
+//   florals?: string[],
+//   herbs?: string[],
+//   spices?: string[],
+//   earthFlavors?: string[],
+//   others?: string[],
+// }
 
-export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }) {
+type typeOfFlavor = string;
+const FlavorObj:{[index:string]:typeOfFlavor} = {};
 
-  const [fruitFlavors, setFruitFlavors] = useState({});
-  const [dryFruitFlavors, setDryFruitFlavors] = useState({});
-  const [floralFlavors, setFloralFlavors] = useState({});
-  const [herbalFlavors, setHerbalFlavors] = useState({});
-  const [spiceFlavors, setSpiceFlavors] = useState({});
-  const [earthFlavors, setEarthFlavors] = useState({});
-  const [otherFlavors, setOtherFlavors] = useState({});
+interface IPropsPossibleFlavors {
+  grape:string,
+  wineDB:IWineDB,
+  updatePossibleFlavors:(stuff:{ flavors:typeof FlavorObj,ratingCompleted:boolean}) => void
+}
+//will it still be able to reach the reference to the ./winedb file?
 
-  function updateFruitFlavors(fruit:string) {
+export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }:IPropsPossibleFlavors) {
+  // type fruitType = {fruit:string};
+  
+  const [fruitFlavors, setFruitFlavors] = useState(FlavorObj);
+  const [dryFruitFlavors, setDryFruitFlavors] = useState(FlavorObj);
+  const [floralFlavors, setFloralFlavors] = useState(FlavorObj);
+  const [herbalFlavors, setHerbalFlavors] = useState(FlavorObj);
+  const [spiceFlavors, setSpiceFlavors] = useState(FlavorObj);
+  const [earthFlavors, setEarthFlavors] = useState(FlavorObj);
+  const [otherFlavors, setOtherFlavors] = useState(FlavorObj);
+// {fruit:fruit}
+  const updateFruitFlavors = (fruit:string) => {
     if (fruitFlavors[fruit] === fruit) {
       delete fruitFlavors[fruit]
       setFruitFlavors(prev => ({
@@ -94,7 +133,7 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
     }
   }
 
-  function updateOtherFlavors(other?:string) {
+  function updateOtherFlavors(other:string) {
     if (otherFlavors[other] === other) {
       delete otherFlavors[other]
       setOtherFlavors(prev => ({
@@ -108,8 +147,8 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
     }
   }
 
-  return (<div>
-
+  return (
+  <div>
     <div className={"centered__container__possible__flavors"}>
       <div>
         <span className='possible__flavor__headline'>

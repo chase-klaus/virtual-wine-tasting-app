@@ -1,14 +1,14 @@
+import * as React from 'react';
+import content from '../../../components';
 import joy from "../pictures/joy.svg"
 import note from "../pictures/note.svg"
 import education from "../pictures/education.svg"
 
-export default function Home() {
-
-  return (<div>
+ const Home = () => {
+  return (
+  <div>
     <div className="home__container">
-
       <h1 className="home__headline">Why this app?</h1>
-
       <div className="home__sub__container">
         <div><img src={education} alt="education" className="home__img"></img></div>
         <div className="home__txt">
@@ -37,3 +37,6 @@ export default function Home() {
   </div>)
 
 }
+
+
+export default Home;

@@ -1,5 +1,6 @@
 import "./App.css";
-import React, { useState } from "react";
+import * as React from 'react';
+import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import WineTasting from "./Components/WineTasting/WineTasting";
 import WineList from "./Components/WineList/WineList";

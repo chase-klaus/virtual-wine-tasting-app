@@ -1,19 +1,25 @@
-import { useEffect, useState, FC, ReactElement } from 'react';
+import { useEffect, useState } from 'react';
 import * as React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '../../../node_modules/@fortawesome/react-fontawesome/index';
+import { faCheck } from '../../../node_modules/@fortawesome/free-solid-svg-icons/index';
 import ApiService from '../ApiService';
 
+// is this correct? NO loginuser is a function
+interface ILoginProps{
+  loginUser: (mail:string, password:string, userId:number, validated:boolean) => void
+}
 
-// type LoginProps = {
-//   loginUser: string
-// }
+interface IUser {
+  mail:string, 
+  password:string, 
+  id:number
+}
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
 // interface IUser = 
 
-export default function Login({ loginUser }) {
+export default function Login({loginUser}:ILoginProps) {
 
   // LOGIN - STATES
   const [mail, setMail] = useState("");
@@ -39,17 +45,17 @@ export default function Login({ loginUser }) {
   //   setUsers(users)
   // }
 
-  function handleSubmit(event) {
+  const handleSubmit = (event:React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     if (mail && password && isRegistered === true && password === passwordFromDB) {
-      loginUser(mail, password, userId, { userValidated: true })
+      loginUser(mail, password, userId, true)
     } else setError(true);
   }
 
-  async function checkIfUserIsInDatabase() {
+  const checkIfUserIsInDatabase = async () => {
     const users = await ApiService.getUsers()
     try {
-      users.map(user => {
+      users.map((user:IUser) => {
         if (user.mail === mail) {
           setIsRegistered(true);
           setPasswordFromDB(user.password)
@@ -62,29 +68,29 @@ export default function Login({ loginUser }) {
     }
   }
 
-  function handleChangeMail(event:InputEvent) {
+  const handleChangeMail= (event:InputEvent) => {
     if (error) setError(false);
     setMail(event.target.value);
     checkIfUserIsInDatabase()
   }
 
-  function handleChangePassword(event:InputEvent) {
+  const handleChangePassword = (event:InputEvent) => {
     if (error) setError(false);
     setPassword(event.target.value);
   }
 
   //REGISTRATION - FUNCTIONS
-  function handleChangeNewMail(event:InputEvent) {
+  const handleChangeNewMail = (event:InputEvent) => {
     if (error) setError(false);
     setNewMail(event.target.value);
   }
 
-  function handleChangeNewPassword(event:InputEvent) {
+  const handleChangeNewPassword = (event:InputEvent) => {
     if (error) setError(false);
     setNewPassword(event.target.value);
   }
 
-  function handleRegistrationSubmit(event) {
+  const handleRegistrationSubmit = (event:React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     if (newMail && newPassword) {
       setNewMail(newMail);
@@ -93,7 +99,7 @@ export default function Login({ loginUser }) {
     } else setError(true);
   }
 
-  function registerUser() {
+  const registerUser = () => {
     ApiService.postUser({ mail: newMail, password: newPassword });
     setSuccessfullyRegistrated(true);
     setTimeout(function () { setUserExists(true); }, 1500);
