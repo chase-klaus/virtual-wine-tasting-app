@@ -7,5 +7,5 @@ const associationOpts = {
 };
 
 Tasting.belongsTo(User, associationOpts);
-Users.hasMany(Tasting, associationOpts);
+User.hasMany(Tasting, associationOpts);
 

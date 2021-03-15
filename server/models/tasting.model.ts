@@ -1,6 +1,6 @@
 'use strict';
+import {DataTypes} from 'sequelize'
 const sequelize = require('./index');
-const {DataTypes} = require('sequelize');
 
   const Tasting = sequelize.define('tasting', {
     winery: {

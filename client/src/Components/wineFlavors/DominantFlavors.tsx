@@ -38,15 +38,15 @@ export default function DominantFlavors({grape,wineDB,updateDominantFlavors}:IDo
       <div className='container__and__button'>
         <div className="dominant__flavors__container">
           {wineDB[grape].dominantFlavors.map((flavor:string) => (
-            <div onClick={() => updateFlavors(flavor)} className={(flavors[flavor] === flavor ? 'dominant__flavors__box__toggled' : 'dominant__flavors__box')}>{flavor}</div>
-
-          ))}
+            <div onClick={() => 
+              updateFlavors(flavor)} className={(flavors[flavor] === flavor ? 
+                'dominant__flavors__box__toggled' : 'dominant__flavors__box')}>{flavor}
+            </div>))}
         </div>
         <button
           className='dominant__flavor__btn'
           onClick={() =>
-            updateDominantFlavors({ ratingCompleted: true, flavors: flavors })
-          }>
+            updateDominantFlavors({ ratingCompleted: true, flavors: flavors })}>
           next
         </button>
       </div>

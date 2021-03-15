@@ -22,7 +22,6 @@ interface IUser {
 // React.FormEventHandler<HTMLFormElement>
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 type ButtonEvent = React.FormEvent;
-// interface IUser = 
 
 export default function Login({loginUser}:ILoginProps) {
 

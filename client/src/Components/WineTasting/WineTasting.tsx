@@ -64,19 +64,19 @@ export default function WineTasting({ user }) {
     return tannins !== 0 && body === 0;
   }
 
-  function updateBody(event, value) {
+  function updateBody( value) {
     setBody(value);
   }
 
-  function updateFruit(event, value) {
+  function updateFruit( value) {
     setFruit(value);
   }
 
-  function updateTannins(event, value) {
+  function updateTannins( value) {
     setTannins(value);
   }
 
-  function updateAcidity(event, value) {
+  function updateAcidity( value) {
     setAcidity(value);
   }
 

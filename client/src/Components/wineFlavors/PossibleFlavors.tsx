@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { useState} from 'react';
-import {IPossibleFlavors, IWineType} from '../wineDB/WineDB'
+import { useState } from 'react';
+import { IWineType } from '../wineDB/WineDB'
 
 //do i have to be more specific about types of flavors? 
-type typeOfFlavor = string;
-const FlavorObj:{[index:string]:typeOfFlavor} = {};
+// type typeOfFlavor = string;
+const FlavorObj:{[index:string]:string} = {};
 
 interface IPossibleFlavorsProps {
   grape:string,
   wineDB:{[index:string]:IWineType},
+  // updatePossibleFlavors:{[index:string]:string[]},
   updatePossibleFlavors:(possibleFlavorName:{ fruitFlavors:typeof FlavorObj, 
                                               dryFruitFlavors:typeof FlavorObj, 
                                               floralFlavors:typeof FlavorObj, 
@@ -30,7 +31,7 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
   const [spiceFlavors, setSpiceFlavors] = useState(FlavorObj);
   const [earthFlavors, setEarthFlavors] = useState(FlavorObj);
   const [otherFlavors, setOtherFlavors] = useState(FlavorObj);
-// {fruit:fruit}
+
   const updateFruitFlavors = (fruit:string) => {
     if (fruitFlavors[fruit] === fruit) {
       delete fruitFlavors[fruit]
