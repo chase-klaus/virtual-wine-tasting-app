@@ -2,7 +2,7 @@ const axios = require('axios');
 const url = 'http://localhost:3001';
 
 // GET ALL WINE TASTINGS FROM DB
-async function getTastings(id) {
+async function getTastings(id:number) {
   try {
     const response = await axios.get(url + '/api/tastings/' + id);
     // console.log(response);
@@ -13,7 +13,7 @@ async function getTastings(id) {
 }
 
 // POST ONE TASTING TO DB
-function postTasting(options) {
+function postTasting(options:any) {
   axios.post(url + '/api/tastings', options)
     .then(function (response) {
       console.log(response);
@@ -24,7 +24,7 @@ function postTasting(options) {
 }
 
 //DELETE TASTING BY ID
-function deleteTasting(id) {
+function deleteTasting(id:number) {
   axios.delete(url + '/api/tastings/' + id)
     .then(function (response) {
       console.log(response);
@@ -35,7 +35,7 @@ function deleteTasting(id) {
 }
 
 // CREATE NEW USER
-function postUser(options) {
+function postUser(options:{mail: string, password: string}) {
   axios.post(url + '/api/user', options)
     .then(function (response) {
       console.log(response);

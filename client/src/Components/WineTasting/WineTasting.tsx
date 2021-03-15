@@ -97,6 +97,7 @@ export default function WineTasting({ user }: WineTastingProps) {
     return tannins !== 0 && body === 0;
   }
 
+<<<<<<< HEAD:client/src/Components/WineTasting/WineTasting.tsx
   function updateBody(event: React.ChangeEvent<{}>, value: number) {
     setBody(value);
   }
@@ -110,6 +111,21 @@ export default function WineTasting({ user }: WineTastingProps) {
   }
 
   function updateAcidity(event: React.ChangeEvent<{}>, value: number) {
+=======
+  function updateBody( value) {
+    setBody(value);
+  }
+
+  function updateFruit( value) {
+    setFruit(value);
+  }
+
+  function updateTannins( value) {
+    setTannins(value);
+  }
+
+  function updateAcidity( value) {
+>>>>>>> 3b3f08a260147f695c7c88beb2f0882c2d36f8a0:client/src/Components/WineTasting/WineTasting.js
     setAcidity(value);
   }
 

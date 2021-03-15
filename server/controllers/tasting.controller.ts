@@ -41,7 +41,7 @@ export async function create(req: Request, res: Response) {
   };
 
   // Save Tasting in the database
-  const data = await Tasting.create(tasting)
+ const data = await Tasting.create(tasting)
     //Tasting.create(tasting)
     .then(data => {
       res.send(data);

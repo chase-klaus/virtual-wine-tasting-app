@@ -1,9 +1,29 @@
 import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import * as React from 'react';
+import { FontAwesomeIcon } from '../../../node_modules/@fortawesome/react-fontawesome/index';
+import { faCheck } from '../../../node_modules/@fortawesome/free-solid-svg-icons/index';
 import ApiService from '../ApiService';
 
-export default function Login({ loginUser }) {
+// is this correct? NO loginuser is a function
+interface ILoginProps{
+  loginUser: (
+    mail:string, 
+    password:string, 
+    userId:number, 
+    validated:boolean
+              ) => void
+}
+
+interface IUser {
+  mail:string, 
+  password:string, 
+  id:number
+}
+// React.FormEventHandler<HTMLFormElement>
+type InputEvent = React.ChangeEvent<HTMLInputElement>;
+type ButtonEvent = React.FormEvent;
+
+export default function Login({loginUser}:ILoginProps) {
 
   // LOGIN - STATES
   const [mail, setMail] = useState("");
@@ -11,7 +31,7 @@ export default function Login({ loginUser }) {
   const [userId, setUserId] = useState(0);
   const [isRegistered, setIsRegistered] = useState(false);
   const [passwordFromDB, setPasswordFromDB] = useState("");
-  const [users, setUsers] = useState([])
+  // const [users, setUsers] = useState([])
 
   // REGISTRATION - STATES
   const [newMail, setNewMail] = useState("");
@@ -24,22 +44,24 @@ export default function Login({ loginUser }) {
     checkIfUserIsInDatabase()
   }, [mail])
 
-  async function getAllUsers() {
-    const users = await ApiService.getUsers()
-    setUsers(users)
-  }
+  // async function getAllUsers() {
+  //   const users = await ApiService.getUsers()
+  //   setUsers(users)
+  // }
 
-  function handleSubmit(event) {
+  // event:React.ChangeEvent<HTMLInputElement>
+
+  const handleSubmit = (event:ButtonEvent) => {
     event.preventDefault();
     if (mail && password && isRegistered === true && password === passwordFromDB) {
-      loginUser(mail, password, userId, { userValidated: true })
+      loginUser(mail, password, userId, true)
     } else setError(true);
   }
 
-  async function checkIfUserIsInDatabase() {
+  const checkIfUserIsInDatabase = async () => {
     const users = await ApiService.getUsers()
     try {
-      users.map(user => {
+      users.map((user:IUser) => {
         if (user.mail === mail) {
           setIsRegistered(true);
           setPasswordFromDB(user.password)
@@ -52,29 +74,29 @@ export default function Login({ loginUser }) {
     }
   }
 
-  function handleChangeMail(event) {
+  const handleChangeMail= (event:InputEvent) => {
     if (error) setError(false);
     setMail(event.target.value);
     checkIfUserIsInDatabase()
   }
 
-  function handleChangePassword(event) {
+  const handleChangePassword = (event:InputEvent) => {
     if (error) setError(false);
     setPassword(event.target.value);
   }
 
   //REGISTRATION - FUNCTIONS
-  function handleChangeNewMail(event) {
+  const handleChangeNewMail = (event:InputEvent) => {
     if (error) setError(false);
     setNewMail(event.target.value);
   }
 
-  function handleChangeNewPassword(event) {
+  const handleChangeNewPassword = (event:InputEvent) => {
     if (error) setError(false);
     setNewPassword(event.target.value);
   }
 
-  function handleRegistrationSubmit(event) {
+  const handleRegistrationSubmit = (event:ButtonEvent) => {
     event.preventDefault();
     if (newMail && newPassword) {
       setNewMail(newMail);
@@ -83,14 +105,16 @@ export default function Login({ loginUser }) {
     } else setError(true);
   }
 
-  function registerUser() {
+  const registerUser = () => {
     ApiService.postUser({ mail: newMail, password: newPassword });
     setSuccessfullyRegistrated(true);
-    setTimeout(function () { setUserExists(true); }, 1500);
+    setTimeout(function () { 
+      setUserExists(true); }
+      , 1500);
   }
 
-  return (<div>
-
+  return (
+    <div>
     {userExists === true ? (<div className="centered__container__login">
       <div className='login__headline'><h2>User Login</h2></div>
       <div className="login__form">
@@ -131,7 +155,7 @@ export default function Login({ loginUser }) {
             onChange={handleChangeNewPassword}
             placeholder="Type in your password ..."
           ></input>
-          <button type="submit" class='login__btn' onClick={() => console.log(newMail, newPassword)}>register</button>
+          <button type="submit" className='login__btn' onClick={() => console.log(newMail, newPassword)}>register</button>
         </form>
       </div>
     </div>) : (<div className='successfully__registred'>
@@ -139,7 +163,6 @@ export default function Login({ loginUser }) {
       <div>User successfully registered</div>
     </div>
     )}
-
   </div>
   )
 

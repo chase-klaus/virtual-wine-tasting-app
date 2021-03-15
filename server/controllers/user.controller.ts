@@ -42,4 +42,3 @@ export async function findAllUsers (res: Response) {
     console.log(err, "Some error occurred while retrieving users.");
   }
 };
-

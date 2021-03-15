@@ -1,12 +1,5 @@
-'use strict';
-
-import sequelize from './index';
-import {DataTypes} from 'sequelize';
-
-// interface User {
-//   mail: string;
-//   password: string;
-// }
+import sequelize from './index'
+import {DataTypes} from 'sequelize'
 
 const User = sequelize.define('user', {
     mail: {
@@ -19,4 +12,4 @@ const User = sequelize.define('user', {
     }
   });
 
-  export default User;
+export default User;

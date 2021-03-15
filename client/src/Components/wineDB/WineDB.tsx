@@ -1,4 +1,23 @@
-const malbec = {
+export interface IWineType {
+  grape?: string[],
+  style: string,
+  drinkingTemperature: string, 
+  countries: string[], 
+  dominantFlavors: string[],
+  possibleFlavors: IPossibleFlavors,
+}
+
+export interface IPossibleFlavors {
+  fruits: string[],
+  dryFruits: string[],
+  florals: string[],
+  herbs: string[],
+  spices: string[],
+  earthFlavors: string[],
+  others: string[],
+}
+
+const malbec:IWineType = {
   grape: ["Malbec"],
   style: "Red",
   drinkingTemperature: "Room Temperature",
@@ -23,7 +42,7 @@ const malbec = {
   },
 };
 
-const pinotnoir = {
+const pinotnoir:IWineType = {
   grape: ["Pinot Noir"],
   style: "Red",
   drinkingTemperature: "Cellar Temperature",
@@ -69,7 +88,7 @@ const pinotnoir = {
   },
 };
 
-const merlot = {
+const merlot:IWineType = {
   grape: ["Merlot"],
   style: "Red",
   drinkingTemperature: "Room Temperature",
@@ -107,7 +126,7 @@ const merlot = {
   },
 };
 
-const cabernetsauvignon = {
+const cabernetsauvignon: IWineType = {
   grape: ["Cabernet Sauvignon"],
   style: "Red",
   drinkingTemperature: "Room Temperatur",
@@ -128,7 +147,7 @@ const cabernetsauvignon = {
     "Backing Spcices",
     "Cedar",
   ],
-  possibleFlavors: {
+  possibleFlavors:{
     fruits: [
       "Cranberry",
       "Red Currant",
@@ -161,7 +180,7 @@ const cabernetsauvignon = {
   },
 };
 
-const syrah = {
+const syrah:IWineType = {
   grape: ["Syrah"],
   style: "Red",
   drinkingTemperature: "Room Temperature",
@@ -222,7 +241,7 @@ const syrah = {
   },
 };
 
-const gewürztraminer = {
+const gewürztraminer:IWineType = {
   grape: ["Gewürztraminer"],
   style: "White",
   drinkingTemperature: "Cold",
@@ -245,8 +264,7 @@ const gewürztraminer = {
   },
 };
 
-const riesling = {
-  grape: ["Riesling"],
+const riesling:IWineType = {
   style: "White",
   drinkingTemperature: "Cold",
   countries: ["Germany", "USA", "Australia", "France", "Hungaria"],
@@ -275,6 +293,8 @@ const riesling = {
     others: [""],
   },
 };
+
+
 
 const WineDB = {
   malbec: malbec,
