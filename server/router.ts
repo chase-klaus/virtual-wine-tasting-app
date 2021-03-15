@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const tastings = require("./controllers/tasting.controller.js");
-const user = require("./controllers/user.controller.js");
+const tastings = require("./controllers/tasting.controller.ts");
+const user = require("./controllers/user.controller.ts");
 
 // TASTINGS
 // Create a new Tasting

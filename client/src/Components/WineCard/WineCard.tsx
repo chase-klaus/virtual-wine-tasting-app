@@ -2,8 +2,8 @@ import * as React from 'react';
 import ApiService from '../ApiService';
 import { useState } from "react";
 
-import bottle from "../pictures/bottle.svg";
-import bin from "../pictures/bin.svg"
+import bottle from '../pictures/bottle.svg';
+import bin from '../pictures/bin.svg';
 
 // RATING IS READ ONLY
 import Rating from '@material-ui/lab/Rating/index';
