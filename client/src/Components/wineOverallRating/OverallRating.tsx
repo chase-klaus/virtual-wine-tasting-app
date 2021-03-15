@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
@@ -16,14 +16,25 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-export default function OverallRating({ submitRating, wineList }) {
+interface OverallRatingProps {
+  setValue?: (newValue: number | null) => void,
+  submitRating: (newValue: number | null) => void,
+  wineList: {}[];
+}
+
+export default function OverallRating({ submitRating, wineList }: OverallRatingProps): JSX.Element {
+
+  function handleChange(event: React.ChangeEvent<any>) {
+    setValue(value);
+    submitRating(event.target.value);
+  }
 
   function postTastingToDB() {
     console.log("wineList before post", wineList)
     ApiService.postTasting(wineList);
   }
 
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState<number>(2);
 
   return (
     <div>
@@ -39,11 +50,7 @@ export default function OverallRating({ submitRating, wineList }) {
               precision={0.5}
               value={value}
               icon={<FavoriteIcon fontSize="inherit" />}
-              onChange={(event, newValue) => {
-                setValue(newValue)
-                submitRating(newValue)
-
-              }} />
+              onChange={handleChange} />
           </Box>
         </div>
 

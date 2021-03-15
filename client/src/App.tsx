@@ -1,5 +1,6 @@
 import "./App.css";
-import React, { useState } from "react";
+import { useState } from "react";
+//@ts-ignore
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import WineTasting from "./Components/WineTasting/WineTasting";
 import WineList from "./Components/WineList/WineList";
@@ -7,14 +8,27 @@ import Login from "./Components/Login/Login";
 import User from "./Components/User/User";
 import Home from "./Components/Home/Home";
 
-export default function App() {
+interface ILoginUserProps{
+    mail: string,
+    password: string,
+    userId: number,
+    validated: boolean 
+}
 
-  const [user, setUser] = useState({ mail: '', password: '', userId: '' });
-  const [userValidated, setUserValidated] = useState(false);
+interface ISetUser {
+  mail: string;
+  password: string;
+  userId: number;
+}
 
-  function loginUser(mail, password, userId, validated) {
+export default function App(): JSX.Element {
+
+  const [user, setUser] = useState<ISetUser>({ mail: '', password: '', userId: 0 });
+  const [userValidated, setUserValidated] = useState<boolean>(false);
+
+  function loginUser({ mail, password, userId, validated }: ILoginUserProps) {
     setUser({ mail: mail, password: password, userId: userId });
-    setUserValidated(validated.userValidated)
+    setUserValidated(!validated);
   }
 
   return (

@@ -1,11 +1,11 @@
 'use strict';
 
 require('dotenv').config(); 
-const express = require("express");
-const router = require('./router');
-const cors = require("cors");
+import express = require('express');
+import router from './router';
+import cors = require('cors');
 const app = express();
-const sequelize = require("./models");
+import sequelize from './models';
 
 app.use(cors());
 
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
 
-app.get("/", (req, res) => {
+app.get("/", (req: express.Request, res: express.Response) => {
   res.json({ message: "Hello from the Express Server 🍷" });
 });
 
@@ -26,4 +26,4 @@ app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}🍷.`);
 });
 
-
+export default app;

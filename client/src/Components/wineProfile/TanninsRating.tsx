@@ -15,9 +15,14 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-function TanninsRating({ tannins, updateTannins }) {
+interface TanninsRatingsProps {
+  tannins: number,
+  updateTannins: (event: React.ChangeEvent<{}>, newValue: number | null) => void
+}
 
-  const [statusImage, setStatusImage] = useState(true);
+function TanninsRating({ tannins, updateTannins }: TanninsRatingsProps): JSX.Element {
+
+  const [statusImage, setStatusImage] = useState<boolean>(true);
 
   function hideOrDisplayImage() {
     if (statusImage === true) {

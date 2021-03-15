@@ -16,10 +16,15 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-function FruitRating({ fruit, updateFruit }) {
+interface FruitRatingProps {
+  fruit: number,
+  updateFruit: (event: React.ChangeEvent<{}>, newValue: number | null) => void
+}
 
-  const [statusImage, setStatusImage] = useState(true);
-  const [showRatingExplaination, setShowRatingExplaination] = useState(true);
+function FruitRating({ fruit, updateFruit }: FruitRatingProps): JSX.Element {
+
+  const [statusImage, setStatusImage] = useState<boolean>(true);
+  const [showRatingExplaination, setShowRatingExplaination] = useState<boolean>(true);
 
   function threeSeconds() {
     setTimeout(() => {
