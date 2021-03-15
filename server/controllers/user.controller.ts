@@ -1,14 +1,12 @@
-"use strict";
-// import * as express from 'express';
 import {Request, Response} from 'express';
-const User = require("../models/user.model");
+import User from "../models/user.model";
 
-interface User {
-  mail: string;
-  password: string;
-}
+// interface IUser {
+//   mail: string;
+//   password: string;
+// }
 
-const create = async (req:Request, res:Response) => {
+export const create = async (req:Request, res:Response) => {
   console.log(req.body);
   const { mail, password } = req.body;
   if (!mail && password) return res.status(400);
@@ -21,7 +19,7 @@ const create = async (req:Request, res:Response) => {
   }
 };
 
-const findOne = async (req:Request, res:Response) => {
+export const findOne = async (req:Request, res:Response) => {
   const id = req.params.id;
   try {
     const data = await User.findByPk(id);
@@ -33,7 +31,7 @@ const findOne = async (req:Request, res:Response) => {
   }
 };
 
-const findAllUsers = async (res:Response) => {
+export const findAllUsers = async (res:Response) => {
   const users = await User.findAll();
   if (!users) return res.status(404);
   try {
@@ -44,5 +42,3 @@ const findAllUsers = async (res:Response) => {
     console.log(err, "Some error occurred while retrieving users.");
   }
 };
-
-module.exports = { create, findAllUsers, findOne}

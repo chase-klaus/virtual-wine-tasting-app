@@ -1,14 +1,7 @@
-'use strict';
-
-const sequelize = require('./index');
+import sequelize from './index'
 import {DataTypes} from 'sequelize'
 
-interface User {
-  mail: string;
-  password: string;
-}
-
-const User:User = sequelize.define('user', {
+const User = sequelize.define('user', {
     mail: {
       type: DataTypes.STRING,
       allowNull: false
@@ -19,4 +12,4 @@ const User:User = sequelize.define('user', {
     }
   });
 
-module.exports = User;
+export default User;

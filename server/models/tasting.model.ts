@@ -1,8 +1,8 @@
-'use strict';
 import {DataTypes} from 'sequelize'
-const sequelize = require('./index');
+import sequelize from './index';
+// const sequelize = require('./index');
 
-  const Tasting = sequelize.define('tasting', {
+const Tasting = sequelize.define('tasting', {
     winery: {
       type: DataTypes.STRING,
       allowNull: false
@@ -45,4 +45,4 @@ const sequelize = require('./index');
     }
   });
 
-module.exports = Tasting;
+export default Tasting;

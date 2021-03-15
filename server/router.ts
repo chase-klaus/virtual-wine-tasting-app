@@ -1,8 +1,7 @@
-const router = require('express').Router();
-
-const tastings = require("./controllers/tasting.controller.ts");
-const user = require("./controllers/user.controller.ts");
-
+import * as express from 'express';
+import * as tastings from './controllers/tasting.controller';
+import * as user from './controllers/user.controller';
+const router = express.Router();
 // TASTINGS
 // Create a new Tasting
 // router.post("/api/tastings", tastings.create);
@@ -28,5 +27,5 @@ router.get("/api/allusers", user.findAllUsers);
 
 // router.get("/api/:mail", user.findOneByMail)
 
-module.exports = router;
+export default router;
 

@@ -1,5 +1,5 @@
-const User = require('./user.model')
-const Tasting = require('./tasting.model')
+import User from './user.model'
+import Tasting from './tasting.model'
 
 const associationOpts = {
   foreignKey: 'user_id',

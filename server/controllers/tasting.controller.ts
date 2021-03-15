@@ -1,11 +1,9 @@
 'use strict';
 
-// const db = require("../models");
-const Tasting = require('../models/tasting.model');
-// const Op = db.Sequelize.Op;
+import Tasting from '../models/tasting.model'
 
 // Create and Save a new Tasting
-const create = async (req, res) => {
+export const create = async (req, res) => {
   // Validate request
   //if (!req.body.user) {
   if (!req.body.winery) {
@@ -31,7 +29,7 @@ const create = async (req, res) => {
   };
 
   // Save Tasting in the database
-  const data = await Tasting.create(tasting)
+ const data = await Tasting.create(tasting)
     //Tasting.create(tasting)
     .then(data => {
       res.send(data);
@@ -45,7 +43,7 @@ const create = async (req, res) => {
 };
 
 // Retrieve all Tastings from the database.
-const findAll = (req, res) => {
+export const findAll = (req, res) => {
   const id = req.params.id;
 
   Tasting.findAll({where: {userId: id}})
@@ -86,11 +84,11 @@ const findAll = (req, res) => {
 // };
 
 // Find a single Tasting with an id
-const findOne = (req, res) => {
+export const findOne = (req, res) => {
 };
 
 // Update a Tasting by the id in the request
-const update = (req, res) => {
+export const update = (req, res) => {
 };
 
 
@@ -98,4 +96,4 @@ const update = (req, res) => {
 // update opinions 
 // on the final --> put additional notes 
 
-module.exports = { create, findOne, update }
+// export { create, findOne, update }

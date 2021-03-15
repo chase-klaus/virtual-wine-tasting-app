@@ -1,12 +1,10 @@
-'use strict';
-
 require('dotenv').config(); 
 import * as express from 'express';
-// const express = require("express");
-const router = require('./router');
-const cors = require("cors");
+// import express from 'express'
+import * as cors from 'cors';
+import router from './router';
+import sequelize from './models';
 const app = express();
-const sequelize = require("./models");
 
 app.use(cors());
 
@@ -27,4 +25,4 @@ app.listen(PORT, ():void => {
   console.log(`Server is running on port http://localhost:${PORT}🍷.`);
 });
 
-module.exports = app;
+// export default app;
