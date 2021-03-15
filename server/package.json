@@ -4,8 +4,9 @@
   "description": "",
   "main": "../out-tsc/server/index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "eslint": "^7.21.0",
     "nodemon": "^2.0.7",
+    "supertest": "^6.1.3",
     "typescript": "^4.2.3"
   }
 }

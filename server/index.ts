@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
 
-app.get("/", (req:express.Request, res:express.Response) => {
-  res.json({ message: "Hello from the Express Server 🍷" });
+app.get("/", (res:express.Response) => {
+  res.status(200).json({ message: "Hello from the Express Server 🍷" });
 });
 
 sequelize.sync();
@@ -27,4 +27,4 @@ app.listen(PORT, ():void => {
   console.log(`Server is running on port http://localhost:${PORT}🍷.`);
 });
 
-
+module.exports = app;
