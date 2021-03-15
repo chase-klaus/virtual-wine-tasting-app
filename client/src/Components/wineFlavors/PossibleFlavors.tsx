@@ -1,44 +1,26 @@
 import * as React from 'react';
 import { useState} from 'react';
-import {IWineType, IPossibleFlavors} from '../wineDB/WineDB'
-interface IWineDB {
-  malbec: IWineType,
-  pinotnoir: IWineType,
-  merlot: IWineType,
-  cabernetsauvignon: IWineType,
-  syrah: IWineType,
-  gewürztraminer: IWineType,
-  riesling: IWineType,
-}
-// interface IWineType {
-//   grape: string[],
-//   style: string,
-//   drinkingTemperature: string, 
-//   countries: string[], 
-//   dominantFlavors: string[],
-//   possibleFlavors: IPossibleFlavors,
-// }
-// interface IPossibleFlavors {
-//   fruits?: string[],
-//   dryFruits?: string[],
-//   florals?: string[],
-//   herbs?: string[],
-//   spices?: string[],
-//   earthFlavors?: string[],
-//   others?: string[],
-// }
+import {IPossibleFlavors, IWineType} from '../wineDB/WineDB'
 
+//do i have to be more specific about types of flavors? 
 type typeOfFlavor = string;
 const FlavorObj:{[index:string]:typeOfFlavor} = {};
 
-interface IPropsPossibleFlavors {
+interface IPossibleFlavorsProps {
   grape:string,
-  wineDB:IWineDB,
-  updatePossibleFlavors:(stuff:{ flavors:typeof FlavorObj,ratingCompleted:boolean}) => void
+  wineDB:{[index:string]:IWineType},
+  updatePossibleFlavors:(possibleFlavorName:{ fruitFlavors:typeof FlavorObj, 
+                                              dryFruitFlavors:typeof FlavorObj, 
+                                              floralFlavors:typeof FlavorObj, 
+                                              herbalFlavors:typeof FlavorObj, 
+                                              spiceFlavors:typeof FlavorObj, 
+                                              earthFlavors:typeof FlavorObj, 
+                                              otherFlavors:typeof FlavorObj, 
+                                              ratingCompleted:boolean,}) => void
 }
-//will it still be able to reach the reference to the ./winedb file?
 
-export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }:IPropsPossibleFlavors) {
+//will it still be able to reach the reference to the ./winedb file?
+export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }:IPossibleFlavorsProps) {
   // type fruitType = {fruit:string};
   
   const [fruitFlavors, setFruitFlavors] = useState(FlavorObj);
@@ -179,7 +161,7 @@ export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }
             onClick={() => updateEarthFlavors(earthFlavor)}
             className={(earthFlavors[earthFlavor] === earthFlavor ? 'toggled__flavor__box' : '') + ' flavor__box'}><h6 className='earth'>eath flavor</h6>{earthFlavor}</div>)}
 
-          {wineDB[grape].possibleFlavors.others.map((other?:string) => <div
+          {wineDB[grape].possibleFlavors.others.map((other:string) => <div
             onClick={() => updateOtherFlavors(other)}
             className={(otherFlavors[other] === other ? 'toggled__flavor__box' : '') + ' flavor__box'}><h6 className='other'>other flavor</h6>{other}</div>)}
         </div>

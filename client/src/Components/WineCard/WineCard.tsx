@@ -6,14 +6,14 @@ import bottle from "../pictures/bottle.svg";
 import bin from "../pictures/bin.svg"
 
 // RATING IS READ ONLY
-import Rating from '../../../node_modules/@material-ui/lab/Rating/index';
-import Box from '../../../node_modules/@material-ui/core/Box/index';
+import Rating from '@material-ui/lab/Rating/index';
+import Box from '@material-ui/core/Box/index';
 
 // do i need to define it or will it be inferred? 
 // interface IValue {
 //   value:number
 // }
-interface IWine {
+interface IWineProps {
   id:number, 
   winery:string, 
   year:number, 
@@ -29,7 +29,7 @@ interface IWine {
 
 // TODO double check that these are correctly named as strings, they could be arrays of strings, actually, but since we are mapping... 
 
-export default function WineCard(wine:IWine ) {
+export default function WineCard(wine:IWineProps ) {
 
   const [value, setValue] = useState(wine.overallRating);
 
@@ -44,7 +44,7 @@ export default function WineCard(wine:IWine ) {
         </div>
 
         <div className="image__wrap__wine__card">
-          <div><img alt="bottle" src={bottle}  /*name={wine.grape}*/ className="bottle__image" /*fill="#d82525"*/></img></div> 
+          <div><img alt="bottle" src={bottle}  id={wine.grape} className="bottle__image" /*fill="#d82525"*/></img></div> 
           <div className="wine__card__more__information">
             <div className="hover__profile__wine__card">
               <div>Fruit: {wine.fruit} / 5</div>

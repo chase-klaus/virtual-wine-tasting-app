@@ -6,7 +6,12 @@ import ApiService from '../ApiService';
 
 // is this correct? NO loginuser is a function
 interface ILoginProps{
-  loginUser: (mail:string, password:string, userId:number, validated:boolean) => void
+  loginUser: (
+    mail:string, 
+    password:string, 
+    userId:number, 
+    validated:boolean
+              ) => void
 }
 
 interface IUser {
@@ -14,9 +19,9 @@ interface IUser {
   password:string, 
   id:number
 }
-
+// React.FormEventHandler<HTMLFormElement>
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
-type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
+type ButtonEvent = React.FormEvent;
 // interface IUser = 
 
 export default function Login({loginUser}:ILoginProps) {
@@ -45,7 +50,9 @@ export default function Login({loginUser}:ILoginProps) {
   //   setUsers(users)
   // }
 
-  const handleSubmit = (event:React.ChangeEvent<HTMLInputElement>) => {
+  // event:React.ChangeEvent<HTMLInputElement>
+
+  const handleSubmit = (event:ButtonEvent) => {
     event.preventDefault();
     if (mail && password && isRegistered === true && password === passwordFromDB) {
       loginUser(mail, password, userId, true)
@@ -90,7 +97,7 @@ export default function Login({loginUser}:ILoginProps) {
     setNewPassword(event.target.value);
   }
 
-  const handleRegistrationSubmit = (event:React.ChangeEvent<HTMLInputElement>) => {
+  const handleRegistrationSubmit = (event:ButtonEvent) => {
     event.preventDefault();
     if (newMail && newPassword) {
       setNewMail(newMail);
@@ -102,12 +109,13 @@ export default function Login({loginUser}:ILoginProps) {
   const registerUser = () => {
     ApiService.postUser({ mail: newMail, password: newPassword });
     setSuccessfullyRegistrated(true);
-    setTimeout(function () { setUserExists(true); }, 1500);
+    setTimeout(function () { 
+      setUserExists(true); }
+      , 1500);
   }
 
   return (
     <div>
-
     {userExists === true ? (<div className="centered__container__login">
       <div className='login__headline'><h2>User Login</h2></div>
       <div className="login__form">
@@ -156,7 +164,6 @@ export default function Login({loginUser}:ILoginProps) {
       <div>User successfully registered</div>
     </div>
     )}
-
   </div>
   )
 

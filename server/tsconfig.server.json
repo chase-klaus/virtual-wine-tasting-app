@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/server",
+    "target": "es5",
+    "module": "esnext",
+    "types": [],
+    "allowJs": true,
+    "noImplicitAny": true,
+  }
+}

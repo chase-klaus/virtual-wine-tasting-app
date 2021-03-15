@@ -8,13 +8,13 @@ export interface IWineType {
 }
 
 export interface IPossibleFlavors {
-  fruits?: string[],
-  dryFruits?: string[],
-  florals?: string[],
-  herbs?: string[],
-  spices?: string[],
-  earthFlavors?: string[],
-  others?: string[],
+  fruits: string[],
+  dryFruits: string[],
+  florals: string[],
+  herbs: string[],
+  spices: string[],
+  earthFlavors: string[],
+  others: string[],
 }
 
 const malbec:IWineType = {

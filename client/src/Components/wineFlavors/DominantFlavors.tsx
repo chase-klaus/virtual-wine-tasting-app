@@ -1,40 +1,21 @@
 import * as React from 'react';
 import { useState } from "react";
-interface IWineDB {
-  grape:string
-}
-interface IPossibleFlavors {
-  fruits?: string[],
-  dryFruits?: string[],
-  florals?: string[],
-  herbs?: string[],
-  spices?: string[],
-  earthFlavors?: string[],
-  others?: string[],
-}
-interface IWineType {
-  grape?: string[],
-  style: string,
-  drinkingTemperature: string, 
-  countries: string[], 
-  dominantFlavors: string[],
-  possibleFlavors: IPossibleFlavors,
-}
+import {IWineType} from '../wineDB/WineDB';
 
 type typeOfFlavor = string;
-const FlavorObj:{[index:string]:typeOfFlavor} = {};
+const FlavorObj:{[flavorName:string]:typeOfFlavor} = {};
 
-interface IDominantFlavors {
+interface IDominantFlavorsProps {
   grape:string,
   wineDB:{[index:string]:IWineType},
-  updateDominantFlavors:(stuff:{ratingCompleted:boolean, flavors:typeof FlavorObj}) => void
+  updateDominantFlavors:(args:{ratingCompleted:boolean, flavors:typeof FlavorObj}) => void
 }
-export default function DominantFlavors({updateDominantFlavors,grape,wineDB}:IDominantFlavors) {
+export default function DominantFlavors({grape,wineDB,updateDominantFlavors}:IDominantFlavorsProps) {
   // type fruitType = {fruit:string};
   
   const [flavors, setFlavors] = useState(FlavorObj);
   
-  const  updateFlavors = (flavor:string):void =>{
+  const  updateFlavors = (flavor:string):void => {
     if (flavors[flavor]) {
       delete flavors[flavor];
       setFlavors((prev) => ({
@@ -65,8 +46,7 @@ export default function DominantFlavors({updateDominantFlavors,grape,wineDB}:IDo
           className='dominant__flavor__btn'
           onClick={() =>
             updateDominantFlavors({ ratingCompleted: true, flavors: flavors })
-          }
-        >
+          }>
           next
         </button>
       </div>
