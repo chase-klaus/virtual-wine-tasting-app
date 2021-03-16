@@ -16,8 +16,8 @@ interface IUser {
 }
 
 interface IFlavors<T> {
-  flavors:T;
-  ratingCompleted:boolean;
+  flavors: T;
+  ratingCompleted: boolean;
 }
 
 
@@ -31,8 +31,8 @@ interface IPossibleFlavors {
   otherFlavors: string[],
 }
 
-type DominantFlavors = IFlavors<string[]>;
-type PossibleFlavors = IFlavors<IPossibleFlavors>;
+type TypeDominantFlavors = IFlavors<string[]>;
+type TypePossibleFlavors = IFlavors<IPossibleFlavors>;
 
 interface WineTastingProps {
   user: IUser;
@@ -114,11 +114,11 @@ export default function WineTasting({ user }: WineTastingProps) {
     setAcidity(value);
   }
 
-  function updateDominantFlavors(flavors: any) {
-    setDominantFlavors(flavors); 
+  function updateDominantFlavors(flavors: TypeDominantFlavors) {
+    setDominantFlavors(flavors);
   }
 
-  function updatePossibleFlavors(flavors: any) {
+  function updatePossibleFlavors(flavors: TypePossibleFlavors) {
     setPossibleFlavors(flavors);
   }
 
