@@ -31,7 +31,7 @@ export async function findOne (req: Request, res: Response) {
   }
 };
 
-export async function findAllUsers (res: Response) {
+export async function findAllUsers (req: Request, res: Response) {
   const users = await User.findAll();
   if (!users) return res.status(404);
   try {
