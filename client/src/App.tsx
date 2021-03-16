@@ -1,11 +1,6 @@
 import "./App.css";
-<<<<<<< HEAD:client/src/App.tsx
+// import * as React from 'react';
 import { useState } from "react";
-//@ts-ignore
-=======
-import * as React from 'react';
-import { useState } from "react";
->>>>>>> 3b3f08a260147f695c7c88beb2f0882c2d36f8a0:client/src/App.js
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import WineTasting from "./Components/WineTasting/WineTasting";
 import WineList from "./Components/WineList/WineList";
@@ -31,7 +26,7 @@ export default function App(): JSX.Element {
   const [user, setUser] = useState<ISetUser>({ mail: '', password: '', userId: 0 });
   const [userValidated, setUserValidated] = useState<boolean>(false);
 
-  function loginUser({ mail, password, userId, validated }: ILoginUserProps) {
+  function loginUser({ mail, password, userId, validated }: any) {
     setUser({ mail: mail, password: password, userId: userId });
     setUserValidated(!validated);
   }

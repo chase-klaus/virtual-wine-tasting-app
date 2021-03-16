@@ -17,7 +17,7 @@ const StyledRating = withStyles({
 })(Rating);
 
 interface FruitRatingProps {
-  fruit: number,
+  fruit: number | null,
   updateFruit: (event: React.ChangeEvent<{}>, newValue: number | null) => void
 }
 

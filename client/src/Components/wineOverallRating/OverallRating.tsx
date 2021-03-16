@@ -17,8 +17,8 @@ const StyledRating = withStyles({
 })(Rating);
 
 interface OverallRatingProps {
-  setValue?: (newValue: number | null) => void,
-  submitRating: (newValue: number | null) => void,
+  setValue?: (newValue: number) => void,
+  submitRating: (newValue: number) => void,
   wineList: {}[];
 }
 

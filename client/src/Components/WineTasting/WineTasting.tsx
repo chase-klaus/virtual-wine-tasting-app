@@ -48,10 +48,10 @@ export default function WineTasting({ user }: WineTastingProps) {
   const [year, setYear] = useState<string>("");
   const [grape, setGrape] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
-  const [body, setBody] = useState<number>(0);
-  const [fruit, setFruit] = useState<number>(0);
-  const [tannins, setTannins] = useState<number>(0);
-  const [acidity, setAcidity] = useState<number>(0);
+  const [body, setBody] = useState<number | null>(0);
+  const [fruit, setFruit] = useState<number | null>(0);
+  const [tannins, setTannins] = useState<number | null>(0);
+  const [acidity, setAcidity] = useState<number | null>(0);
   const [possibleFlavors, setPossibleFlavors] = useState<any>({});
   const [dominantFlavors, setDominantFlavors] = useState<any>([]);
   const [wineList, setWineList] = useState<any>({});
@@ -97,43 +97,27 @@ export default function WineTasting({ user }: WineTastingProps) {
     return tannins !== 0 && body === 0;
   }
 
-<<<<<<< HEAD:client/src/Components/WineTasting/WineTasting.tsx
-  function updateBody(event: React.ChangeEvent<{}>, value: number) {
+  function updateBody(event: React.ChangeEvent<{}>, value: number | null) {
     setBody(value);
   }
 
-  function updateFruit(event: React.ChangeEvent<{}>, value: number) {
+  function updateFruit(event: React.ChangeEvent<{}>, value: number | null) {
     setFruit(value);
   }
 
-  function updateTannins(event: React.ChangeEvent<{}>, value: number) {
+  function updateTannins(event: React.ChangeEvent<{}>, value: number | null) {
     setTannins(value);
   }
 
-  function updateAcidity(event: React.ChangeEvent<{}>, value: number) {
-=======
-  function updateBody( value) {
-    setBody(value);
-  }
-
-  function updateFruit( value) {
-    setFruit(value);
-  }
-
-  function updateTannins( value) {
-    setTannins(value);
-  }
-
-  function updateAcidity( value) {
->>>>>>> 3b3f08a260147f695c7c88beb2f0882c2d36f8a0:client/src/Components/WineTasting/WineTasting.js
+  function updateAcidity(event: React.ChangeEvent<{}>, value: number | null) {
     setAcidity(value);
   }
 
-  function updateDominantFlavors(flavors: IFlavors) {
-    setDominantFlavors(flavors);
+  function updateDominantFlavors(flavors: any) {
+    setDominantFlavors(flavors); 
   }
 
-  function updatePossibleFlavors(flavors: IFlavors) {
+  function updatePossibleFlavors(flavors: any) {
     setPossibleFlavors(flavors);
   }
 

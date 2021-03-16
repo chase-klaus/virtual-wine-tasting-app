@@ -16,7 +16,7 @@ const StyledRating = withStyles({
 })(Rating);
 
 interface TanninsRatingsProps {
-  tannins: number,
+  tannins: number | null,
   updateTannins: (event: React.ChangeEvent<{}>, newValue: number | null) => void
 }
 

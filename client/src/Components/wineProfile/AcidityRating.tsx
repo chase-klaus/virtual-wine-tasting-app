@@ -16,7 +16,7 @@ const StyledRating = withStyles({
 })(Rating);
 
 interface AcidityRatingProps {
-  acidity: number,
+  acidity: number | null,
   updateAcidity: (event: React.ChangeEvent<{}>, newValue: number | null) => void
 }
 
