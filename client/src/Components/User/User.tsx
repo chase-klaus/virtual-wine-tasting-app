@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 interface IUser {
   mail:string, 
   password:string, 

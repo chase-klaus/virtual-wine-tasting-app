@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState } from 'react';
 import { IWineType } from '../wineDB/WineDB'
 
@@ -32,7 +31,6 @@ interface IPossibleFlavorsProps {
 
 //will it still be able to reach the reference to the ./winedb file?
 export default function PossibleFlavors({ updatePossibleFlavors, grape, wineDB }:IPossibleFlavorsProps) {
-  // type fruitType = {fruit:string};
   
   const [fruitFlavors, setFruitFlavors] = useState(FlavorObj);
   const [dryFruitFlavors, setDryFruitFlavors] = useState(FlavorObj);

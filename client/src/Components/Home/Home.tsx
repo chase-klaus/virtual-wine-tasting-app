@@ -1,4 +1,3 @@
-import * as React from 'react';
 import joy from "../pictures/joy.svg"
 import note from "../pictures/note.svg"
 import education from "../pictures/education.svg"

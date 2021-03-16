@@ -17,8 +17,8 @@ const StyledRating = withStyles({
 })(Rating);
 
 interface FruitRatingProps {
-  fruit: number,
-  updateFruit: (event: React.ChangeEvent<{}>, newValue: number) => void
+  fruit: number | null,
+  updateFruit: (event: React.ChangeEvent<{}>, newValue: number | null) => void
 }
 
 function FruitRating({ fruit, updateFruit }: FruitRatingProps): JSX.Element {
@@ -74,5 +74,4 @@ function FruitRating({ fruit, updateFruit }: FruitRatingProps): JSX.Element {
     </div>
   </div>)
 }
-
 export default FruitRating

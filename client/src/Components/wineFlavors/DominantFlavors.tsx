@@ -1,26 +1,25 @@
-import * as React from 'react';
 import { useState } from "react";
 import {IWineType} from '../wineDB/WineDB';
 
-type typeOfFlavor = string;
-const FlavorObj:{[flavorName:string]:typeOfFlavor} = {};
+// type typeOfFlavor = string;
+// const FlavorObj:{[flavorName:string]:typeOfFlavor} = {};
 
 interface IFlavors<T> {
   flavors:T;
   ratingCompleted:boolean;
 }
 
-type DominantFlavors = IFlavors<string[]>;
+// type TypeDominantFlavors = IFlavors<string[]>;
 
 interface IDominantFlavorsProps {
   grape:string,
   wineDB:{[index:string]:IWineType},
-  updateDominantFlavors:(DominantFlavors) => void
+  updateDominantFlavors:(arg:IFlavors<string[]>)=>void
 }
 export default function DominantFlavors({grape,wineDB,updateDominantFlavors}:IDominantFlavorsProps) {
   // type fruitType = {fruit:string};
   
-  const [flavors, setFlavors] = useState(FlavorObj);
+  const [flavors, setFlavors] = useState([]);
   
   const  updateFlavors = (flavor:string):void => {
     if (flavors[flavor]) {

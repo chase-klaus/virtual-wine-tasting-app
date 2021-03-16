@@ -31,8 +31,8 @@ interface IPossibleFlavors {
   otherFlavors: string[],
 }
 
-type DominantFlavors = IFlavors<string[]>;
-type PossibleFlavors = IFlavors<IPossibleFlavors>;
+type TypeDominantFlavors = IFlavors<string[]>;
+type TypePossibleFlavors = IFlavors<IPossibleFlavors>;
 
 interface WineTastingProps {
   user: IUser;
@@ -49,10 +49,10 @@ export default function WineTasting({ user }: WineTastingProps) {
   const [year, setYear] = useState<string>('');
   const [grape, setGrape] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
-  const [body, setBody] = useState<number>(0);
-  const [fruit, setFruit] = useState<number>(0);
-  const [tannins, setTannins] = useState<number>(0);
-  const [acidity, setAcidity] = useState<number>(0);
+  const [body, setBody] = useState<number|null>(0);
+  const [fruit, setFruit] = useState<number|null>(0);
+  const [tannins, setTannins] = useState<number|null>(0);
+  const [acidity, setAcidity] = useState<number|null>(0);
   const [possibleFlavors, setPossibleFlavors] = useState<any>({});
   const [dominantFlavors, setDominantFlavors] = useState<any>([]);
   const [wineList, setWineList] = useState<any>({});
@@ -98,27 +98,27 @@ export default function WineTasting({ user }: WineTastingProps) {
     return tannins !== 0 && body === 0;
   }
 
-  function updateBody(event: React.ChangeEvent<{}>, value: number) {
+  function updateBody(event: React.ChangeEvent<{}>, value: number|null) {
     setBody(value);
   }
 
-  function updateFruit(event: React.ChangeEvent<{}>, value: number) {
+  function updateFruit(event: React.ChangeEvent<{}>, value: number|null) {
     setFruit(value);
   }
 
-  function updateTannins(event: React.ChangeEvent<{}>, value: number) {
+  function updateTannins(event: React.ChangeEvent<{}>, value: number|null) {
     setTannins(value);
   }
 
-  function updateAcidity(event: React.ChangeEvent<{}>, value: number) {
+  function updateAcidity(event: React.ChangeEvent<{}>, value: number|null) {
     setAcidity(value);
   }
 
-  function updateDominantFlavors(flavors:DominantFlavors) {
+  function updateDominantFlavors(flavors:TypeDominantFlavors) {
     setDominantFlavors(flavors);
   }
 
-  function updatePossibleFlavors(flavors: PossibleFlavors) {
+  function updatePossibleFlavors(flavors: TypePossibleFlavors) {
     setPossibleFlavors(flavors);
   }
 

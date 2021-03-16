@@ -17,7 +17,7 @@ const StyledRating = withStyles({
 
 interface BodyRatingProps {
   body: any,
-  updateBody: (event: React.ChangeEvent<{}>, newValue: number) => void
+  updateBody: (event: React.ChangeEvent<{}>, newValue: number|null) => void
 }
 
 function BodyRating({ body, updateBody }: BodyRatingProps): JSX.Element {

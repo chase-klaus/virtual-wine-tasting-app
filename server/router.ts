@@ -26,6 +26,6 @@ import * as user from './controllers/user.controller';
   //GET ALL USER FROM DB 
   router.get("/api/allusers", user.findAllUsers);
 
-  // router.get("/api/:mail", user.findOneByMail)
+  router.get("/api/findByMail/:mail", user.findOneByMail)
 
 export default router;

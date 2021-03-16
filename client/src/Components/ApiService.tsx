@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 const url = 'http://localhost:3001';
 
 // GET ALL WINE TASTINGS FROM DB
@@ -55,8 +55,18 @@ async function getUsers() {
     console.error(error);
   }
 }
+// GET BY EMAIL
+async function getUserByMail(mail:string) {
+  try {
+    const response = await axios.get(url + '/api/findByMail/'+mail);
+    // console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 
-export default { getTastings, postTasting, deleteTasting, postUser, getUsers };
+export default { getTastings, postTasting, deleteTasting, postUser, getUsers, getUserByMail };
 
 

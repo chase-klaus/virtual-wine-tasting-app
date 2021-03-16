@@ -39,49 +39,42 @@ export default function Login({loginUser}:ILoginUserProps) {
   const [userExists, setUserExists] = useState(true);
   const [successfullyRegistrated, setSuccessfullyRegistrated] = useState(false);
 
-  useEffect(() => {
-    checkIfUserIsInDatabase()
-  }, [mail])
-
-  // async function getAllUsers() {
-  //   const users = await ApiService.getUsers()
-  //   setUsers(users)
-  // }
-  
-  // event:React.ChangeEvent<HTMLInputElement>
-
-  const handleSubmit = (event:ButtonEvent) => {
-    event.preventDefault();
-    if (mail && password && isRegistered === true && password === passwordFromDB) {
-      loginUser(mail, password, userId, true)
-    } else setError(true);
-  }
-
-  const checkIfUserIsInDatabase = async () => {
-    const users = await ApiService.getUsers()
-    try {
-      users.map((user:IUser) => {
-        if (user.mail === mail) {
-          setIsRegistered(true);
-          setPasswordFromDB(user.password)
-          setUserId(user.id)
-          console.log("found")
-        }
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // useEffect(() => {
+  //   checkIfUserIsInDatabase()
+  // }, [mail])
 
   const handleChangeMail= (event:InputEvent) => {
     if (error) setError(false);
     setMail(event.target.value);
-    checkIfUserIsInDatabase()
+    // checkIfUserIsInDatabase();
   }
 
   const handleChangePassword = (event:InputEvent) => {
     if (error) setError(false);
     setPassword(event.target.value);
+  }
+  
+  const checkIfUserIsInDatabase = async () => {
+    const user = await ApiService.getUserByMail(mail)
+    try {
+      if(user.password === password) {
+        console.log('passwords match')
+        const {id} = user;
+        setIsRegistered(true);
+        setUserId(id)
+        setPasswordFromDB(password);
+        loginUser(mail, password, id, true)
+      } else {
+        alert('email or password are incorrect')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleSubmit = (event:ButtonEvent) => {
+    event.preventDefault();
+    checkIfUserIsInDatabase();
   }
 
   //REGISTRATION - FUNCTIONS
@@ -114,7 +107,8 @@ export default function Login({loginUser}:ILoginUserProps) {
 
   return (
     <div>
-    {userExists === true ? (<div className="centered__container__login">
+    {userExists === true ? 
+    (<div className="centered__container__login">
       <div className='login__headline'><h2>User Login</h2></div>
       <div className="login__form">
         <form onSubmit={handleSubmit}>
@@ -136,7 +130,9 @@ export default function Login({loginUser}:ILoginUserProps) {
         </form>
       </div>
       <div className='go__to__register'>to create a new user click <div onClick={() => setUserExists(false)} className='go__to__register__btn'>here</div></div>
-    </div>) : successfullyRegistrated === false ? (<div className="centered__container__login">
+    </div>) 
+    : successfullyRegistrated === false ? 
+    (<div className="centered__container__login">
       <div className='login__headline'><h2>Register new User</h2></div>
       <div className="login__form">
         <form onSubmit={handleRegistrationSubmit}>
@@ -157,7 +153,9 @@ export default function Login({loginUser}:ILoginUserProps) {
           <button type="submit" className='login__btn' onClick={() => console.log(newMail, newPassword)}>register</button>
         </form>
       </div>
-    </div>) : (<div className='successfully__registred'>
+    </div>) 
+    : 
+    (<div className='successfully__registred'>
       <div><FontAwesomeIcon icon={faCheck} size="5x" className='successfully__registred__logo' /></div>
       <div>User successfully registered</div>
     </div>

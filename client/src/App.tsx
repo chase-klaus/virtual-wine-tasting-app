@@ -1,6 +1,6 @@
 import "./App.css";
+// import * as React from 'react';
 import { useState } from "react";
-//@ts-ignore
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import WineTasting from "./Components/WineTasting/WineTasting";
 import WineList from "./Components/WineList/WineList";
@@ -8,12 +8,12 @@ import Login from "./Components/Login/Login";
 import User from "./Components/User/User";
 import Home from "./Components/Home/Home";
 
-interface ILoginUserProps{
-    mail: string,
-    password: string,
-    userId: number,
-    validated: boolean 
-}
+// interface ILoginUserProps{
+//     mail: string,
+//     password: string,
+//     userId: number,
+//     validated: boolean 
+// }
 
 interface ISetUser {
   mail: string;
@@ -21,10 +21,10 @@ interface ISetUser {
   userId: number;
 }
 
-interface ILogin {
-  user: ISetUser,
-  validated:boolean
-}
+// interface ILogin {
+//   user: ISetUser,
+//   validated:boolean
+// }
 
 export default function App(): JSX.Element {
 
@@ -32,10 +32,8 @@ export default function App(): JSX.Element {
   const [userValidated, setUserValidated] = useState<boolean>(false);
 
   function loginUser(mail:string, password:string, userId:number, validated:boolean) {
-    setUser({ mail: mail, 
-              password: password, 
-              userId: userId });
-    setUserValidated(!validated);
+    setUser({ mail: mail, password: password, userId: userId });
+    setUserValidated(validated);
   }
 
   return (
