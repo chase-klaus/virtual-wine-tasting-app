@@ -5,10 +5,17 @@ import {IWineType} from '../wineDB/WineDB';
 type typeOfFlavor = string;
 const FlavorObj:{[flavorName:string]:typeOfFlavor} = {};
 
+interface IFlavors<T> {
+  flavors:T;
+  ratingCompleted:boolean;
+}
+
+type DominantFlavors = IFlavors<string[]>;
+
 interface IDominantFlavorsProps {
   grape:string,
   wineDB:{[index:string]:IWineType},
-  updateDominantFlavors:(args:{ratingCompleted:boolean, flavors:typeof FlavorObj}) => void
+  updateDominantFlavors:(DominantFlavors) => void
 }
 export default function DominantFlavors({grape,wineDB,updateDominantFlavors}:IDominantFlavorsProps) {
   // type fruitType = {fruit:string};

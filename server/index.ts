@@ -1,9 +1,9 @@
 'use strict';
 
 require('dotenv').config(); 
-import express = require('express');
+import express from 'express';
 import router from './router';
-import cors = require('cors');
+import cors from 'cors';
 const app = express();
 import sequelize from './models';
 
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
 
-app.get("/", (req: express.Request, res: express.Response) => {
+app.get("/", (res: express.Response) => {
   res.json({ message: "Hello from the Express Server 🍷" });
 });
 

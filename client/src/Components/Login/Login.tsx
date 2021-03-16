@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
 import * as React from 'react';
-import { FontAwesomeIcon } from '../../../node_modules/@fortawesome/react-fontawesome/index';
-import { faCheck } from '../../../node_modules/@fortawesome/free-solid-svg-icons/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/index';
 import ApiService from '../ApiService';
 
 // is this correct? NO loginuser is a function
-interface ILoginProps{
+interface ILoginUserProps{
   loginUser: (
     mail:string, 
     password:string, 
     userId:number, 
-    validated:boolean
-              ) => void
+    validated:boolean) => void
 }
 
 interface IUser {
@@ -23,7 +22,7 @@ interface IUser {
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 type ButtonEvent = React.FormEvent;
 
-export default function Login({loginUser}:ILoginProps) {
+export default function Login({loginUser}:ILoginUserProps) {
 
   // LOGIN - STATES
   const [mail, setMail] = useState("");
@@ -48,7 +47,7 @@ export default function Login({loginUser}:ILoginProps) {
   //   const users = await ApiService.getUsers()
   //   setUsers(users)
   // }
-
+  
   // event:React.ChangeEvent<HTMLInputElement>
 
   const handleSubmit = (event:ButtonEvent) => {
@@ -165,6 +164,4 @@ export default function Login({loginUser}:ILoginProps) {
     )}
   </div>
   )
-
 }
-

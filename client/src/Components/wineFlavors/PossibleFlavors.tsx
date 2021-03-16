@@ -6,18 +6,28 @@ import { IWineType } from '../wineDB/WineDB'
 // type typeOfFlavor = string;
 const FlavorObj:{[index:string]:string} = {};
 
+interface IPossibleFlavors {
+  fruitFlavors: string[],
+  dryFruitFlavors: string[],
+  floralFlavors: string[],
+  herbalFlavors: string[],
+  spiceFlavors: string[],
+  earthFlavors: string[],
+  otherFlavors: string[],
+}
+
+interface IFlavors<T> {
+  flavors:T;
+  ratingCompleted:boolean;
+}
+
+type PossibleFlavors = IFlavors<IPossibleFlavors>;
+// updatePossibleFlavors:{[index:string]:string[]},
+
 interface IPossibleFlavorsProps {
   grape:string,
   wineDB:{[index:string]:IWineType},
-  // updatePossibleFlavors:{[index:string]:string[]},
-  updatePossibleFlavors:(possibleFlavorName:{ fruitFlavors:typeof FlavorObj, 
-                                              dryFruitFlavors:typeof FlavorObj, 
-                                              floralFlavors:typeof FlavorObj, 
-                                              herbalFlavors:typeof FlavorObj, 
-                                              spiceFlavors:typeof FlavorObj, 
-                                              earthFlavors:typeof FlavorObj, 
-                                              otherFlavors:typeof FlavorObj, 
-                                              ratingCompleted:boolean,}) => void
+  updatePossibleFlavors:(PossibleFlavors) => void
 }
 
 //will it still be able to reach the reference to the ./winedb file?

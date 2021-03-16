@@ -15,23 +15,24 @@ interface IUser {
   // user: any
 }
 
-interface IFlavors {
-  flavors: string[];
-  ratingCompleted?: boolean;
+interface IFlavors<T> {
+  flavors:T;
+  ratingCompleted:boolean;
 }
 
-// interface IPossibleFlavors {
-//   fruitFlavors: string[],
-//   dryFruitFlavors: string[],
-//   floralFlavors: string[],
-//   herbalFlavors: string[],
-//   spiceFlavors: string[],
-//   earthFlavors: string[],
-//   otherFlavors: string[],
-// }
 
-// type DominantFlavors = IFlavors<string[]>;
-// type PossibleFlavors = IFlavors<IPossibleFlavors>;
+interface IPossibleFlavors {
+  fruitFlavors: string[],
+  dryFruitFlavors: string[],
+  floralFlavors: string[],
+  herbalFlavors: string[],
+  spiceFlavors: string[],
+  earthFlavors: string[],
+  otherFlavors: string[],
+}
+
+type DominantFlavors = IFlavors<string[]>;
+type PossibleFlavors = IFlavors<IPossibleFlavors>;
 
 interface WineTastingProps {
   user: IUser;
@@ -44,9 +45,9 @@ interface WineTastingProps {
 export default function WineTasting({ user }: WineTastingProps) {
 
   const [startTasting, setStartTasting] = useState<boolean>(false);
-  const [winery, setWinery] = useState<string>("");
-  const [year, setYear] = useState<string>("");
-  const [grape, setGrape] = useState<string>("");
+  const [winery, setWinery] = useState<string>('');
+  const [year, setYear] = useState<string>('');
+  const [grape, setGrape] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
   const [body, setBody] = useState<number | null>(0);
   const [fruit, setFruit] = useState<number | null>(0);
@@ -148,7 +149,6 @@ export default function WineTasting({ user }: WineTastingProps) {
   return (
     <div>
       {startTasting === false ? (<div className='centered__container__start__tasting'>
-        {console.log("render happening")}
         <div className="form__container">
 
           <form onSubmit={handleSubmit}>
