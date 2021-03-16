@@ -7,7 +7,7 @@ import * as user from './controllers/user.controller';
   // Create a new Tasting
   router.post("/api/tastings", tastings.create);
 
-  // Retrieve all tastings
+  // Retrieve all tastings ??? id=userId?? belonging to the user logged in?
   router.get("/api/tastings/:id", tastings.findAll);
 
   // Delete a Tasting with id

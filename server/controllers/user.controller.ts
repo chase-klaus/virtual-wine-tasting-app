@@ -1,11 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../models/user.model';
 
-// interface IUser {
-//   mail: string;
-//   password: string;
-// }
-
 export const create = async (req:Request, res:Response) => {
   console.log(req.body);
   const { mail, password } = req.body;
@@ -30,6 +25,7 @@ export async function findOne (req: Request, res: Response) {
     console.log(err, "Error retrieving User with id=" + id);
   }
 };
+
 export async function findOneByMail (req: Request, res: Response) {
   // const mail = req.body.mail;
     const mail = req.params.mail;

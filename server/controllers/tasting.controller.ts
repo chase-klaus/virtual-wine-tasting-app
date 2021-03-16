@@ -18,7 +18,7 @@ import Tasting from '../models/tasting.model';
 export async function create(req: Request, res: Response) {
   // Validate request
   //if (!req.body.user) {
-  if (!req.body.params) {
+  if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!"
     });

@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box/index';
 
 interface IWineProps {
   id:number, 
+  userId:number,
   winery:string, 
   year:number, 
   grape:string, 
@@ -24,6 +25,7 @@ interface IWineProps {
 
 // TODO double check that these are correctly named as strings, they could be arrays of strings, actually, but since we are mapping... 
 export default function WineCard( wine:IWineProps ) {
+  // eslint-disable-next-line
   const [value, setValue] = useState(wine.overallRating);
   return (
     <div className='wine__card'>

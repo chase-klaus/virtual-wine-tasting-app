@@ -67,6 +67,7 @@ async function getUserByMail(mail:string) {
 }
 
 
-export default { getTastings, postTasting, deleteTasting, postUser, getUsers, getUserByMail };
+const apiExports = { getTastings, postTasting, deleteTasting, postUser, getUsers, getUserByMail };
 
+export default apiExports;
 

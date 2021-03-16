@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/index';
@@ -13,12 +13,6 @@ interface ILoginUserProps{
     validated:boolean) => void
 }
 
-interface IUser {
-  mail:string, 
-  password:string, 
-  id:number
-}
-// React.FormEventHandler<HTMLFormElement>
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 type ButtonEvent = React.FormEvent;
 
@@ -27,8 +21,11 @@ export default function Login({loginUser}:ILoginUserProps) {
   // LOGIN - STATES
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line
   const [userId, setUserId] = useState(0);
+  // eslint-disable-next-line
   const [isRegistered, setIsRegistered] = useState(false);
+  // eslint-disable-next-line
   const [passwordFromDB, setPasswordFromDB] = useState("");
   // const [users, setUsers] = useState([])
 
@@ -39,14 +36,9 @@ export default function Login({loginUser}:ILoginUserProps) {
   const [userExists, setUserExists] = useState(true);
   const [successfullyRegistrated, setSuccessfullyRegistrated] = useState(false);
 
-  // useEffect(() => {
-  //   checkIfUserIsInDatabase()
-  // }, [mail])
-
   const handleChangeMail= (event:InputEvent) => {
     if (error) setError(false);
     setMail(event.target.value);
-    // checkIfUserIsInDatabase();
   }
 
   const handleChangePassword = (event:InputEvent) => {

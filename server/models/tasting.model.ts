@@ -3,6 +3,10 @@ import sequelize from './index';
 // const sequelize = require('./index');
 
 const Tasting = sequelize.define('tasting', {
+  userId: {
+    type:DataTypes.NUMBER, 
+    allowNull:false
+  },
     winery: {
       type: DataTypes.STRING,
       allowNull: false

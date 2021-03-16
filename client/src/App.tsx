@@ -8,23 +8,11 @@ import Login from "./Components/Login/Login";
 import User from "./Components/User/User";
 import Home from "./Components/Home/Home";
 
-// interface ILoginUserProps{
-//     mail: string,
-//     password: string,
-//     userId: number,
-//     validated: boolean 
-// }
-
 interface ISetUser {
   mail: string;
   password: string;
   userId: number;
 }
-
-// interface ILogin {
-//   user: ISetUser,
-//   validated:boolean
-// }
 
 export default function App(): JSX.Element {
 

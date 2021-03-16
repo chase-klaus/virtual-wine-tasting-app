@@ -10,8 +10,10 @@ interface IUser {
   userId:number
 }
 
+//not including the id bc that one is automatically assigned by pg
 interface IWineProps {
   id:number, 
+  userId:number, 
   winery:string, 
   year:number, 
   grape:string, 
@@ -33,9 +35,10 @@ export default function WineList({user}: WineListProps) {
   const [wineListDB, setWineListDB] = useState<IWineProps[]>([])
 
   useEffect(() => {
-    ApiService.getTastings(user.userId)
+    const dbId = user.userId
+    ApiService.getTastings(dbId)
       .then((res) => setWineListDB(res))
-  }, [wineListDB])
+  }, [])
 
 
   return (<div>
@@ -47,6 +50,7 @@ export default function WineList({user}: WineListProps) {
           {/* <WineCard wine={wine}/> */}
           <WineCard
             id={wine.id}
+            userId={wine.userId}
             winery={wine.winery} 
             year={wine.year} 
             grape={wine.grape} 
