@@ -19,7 +19,7 @@ export const create = async (req:Request, res:Response) => {
   }
 };
 
-export const findOne = async (req:Request, res:Response) => {
+export async function findOne (req: Request, res: Response) {
   const id = req.params.id;
   try {
     const data = await User.findByPk(id);

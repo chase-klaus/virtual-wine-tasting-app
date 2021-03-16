@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { withStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
-import lemon from '../pictures/lemon.svg'
+import lemon from '../pictures/lemon.svg';
 
 const StyledRating = withStyles({
   iconFilled: {
@@ -15,9 +15,14 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-function AcidityRating({ acidity, updateAcidity }) {
+interface AcidityRatingProps {
+  acidity: number,
+  updateAcidity: (event: React.ChangeEvent<{}>, newValue: number) => void
+}
 
-  const [statusImage, setStatusImage] = useState(true)
+function AcidityRating({ acidity, updateAcidity }: AcidityRatingProps): JSX.Element {
+
+  const [statusImage, setStatusImage] = useState<boolean>(true)
 
   function hideOrDisplayImage() {
     if (statusImage === true) {

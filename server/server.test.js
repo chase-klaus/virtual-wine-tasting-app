@@ -8,3 +8,9 @@ it('Testing to see if Jest works', async done => {
   expect(res.status).toBe(200)
   done()
 })
+
+// get all users
+
+// create new user
+
+// get by id

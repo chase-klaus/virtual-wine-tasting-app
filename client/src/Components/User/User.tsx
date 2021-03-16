@@ -1,12 +1,15 @@
 import * as React from 'react';
 
-interface IUserProps {
+interface IUser {
   mail:string, 
   password:string, 
   userId:number
 }
 
-export default function User(user:IUserProps) {
+interface IUserProps {
+  user: IUser
+}
+export default function User({user}:IUserProps) {
 
   return (
   <div>

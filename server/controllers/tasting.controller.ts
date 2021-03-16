@@ -1,12 +1,24 @@
-'use strict';
+import { Request, Response } from 'express';
+import Tasting from '../models/tasting.model';
 
-import Tasting from '../models/tasting.model'
-
+// interface ITasting {
+//   userId: number,
+//   winery: string,
+//   year: number,
+//   grape: string,
+//   fruit: string,
+//   acidity: number,
+//   tannins: number,
+//   body: number,
+//   dominantFlavors: string[],
+//   arrPossibleFlavors: string[],
+//   overallRating: number,
+// }
 // Create and Save a new Tasting
-export const create = async (req, res) => {
+export async function create(req: Request, res: Response) {
   // Validate request
   //if (!req.body.user) {
-  if (!req.body.winery) {
+  if (!req.body.params) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -33,6 +45,7 @@ export const create = async (req, res) => {
     //Tasting.create(tasting)
     .then(data => {
       res.send(data);
+      res.status(200);
     })
     .catch(err => {
       res.status(500).send({
@@ -43,12 +56,13 @@ export const create = async (req, res) => {
 };
 
 // Retrieve all Tastings from the database.
-export const findAll = (req, res) => {
+export function findAll(req: Request, res: Response) {
   const id = req.params.id;
 
-  Tasting.findAll({where: {userId: id}})
+  Tasting.findAll({ where: { userId: id } })
     .then(data => {
       res.send(data);
+      res.status(200);
     })
     .catch(err => {
       res.status(500).send({
@@ -84,11 +98,11 @@ export const findAll = (req, res) => {
 // };
 
 // Find a single Tasting with an id
-export const findOne = (req, res) => {
+export function findOne(req: Request, res: Response) {
 };
 
 // Update a Tasting by the id in the request
-export const update = (req, res) => {
+export function update(req: Request, res: Response) {
 };
 
 
@@ -96,4 +110,4 @@ export const update = (req, res) => {
 // update opinions 
 // on the final --> put additional notes 
 
-// export { create, findOne, update }
+// default export { create, findOne, update, findAll }
