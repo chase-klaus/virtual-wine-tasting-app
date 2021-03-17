@@ -19,10 +19,22 @@ const StyledRating = withStyles({
 interface OverallRatingProps {
   setValue?: (newValue: number ) => void,
   submitRating: (newValue: number ) => void,
-  wineList: {}[];
+  wineList: {
+    userId: number
+    winery: string
+    year: number
+    grape: number
+    fruit: number
+    acidity: number
+    tannins: number
+    body: number
+    dominantFlavors: string[]
+    arrPossibleFlavors: string[]
+    overallRating: number
+      };
 }
 
-export default function OverallRating({ submitRating, wineList }: OverallRatingProps): JSX.Element {
+export default function OverallRating({submitRating, wineList }: OverallRatingProps): JSX.Element {
 
   function handleChange(event: React.ChangeEvent<any>) {
     setValue(value);

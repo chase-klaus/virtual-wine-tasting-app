@@ -12,6 +12,21 @@ async function getTastings(id:number) {
   }
 }
 
+
+  // const wineList: {
+  //   userId: number
+  //   winery: string
+  //   year: number
+  //   grape: number
+  //   fruit: number
+  //   acidity: number
+  //   tannins: number
+  //   body: number
+  //   dominantFlavors: string[]
+  //   arrPossibleFlavors: string[]
+  //   overallRating: number
+  //     };
+
 // POST ONE TASTING TO DB
 function postTasting(options:any) {
   axios.post(url + '/api/tastings', options)

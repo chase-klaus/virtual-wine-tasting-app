@@ -24,35 +24,40 @@ export async function create(req: Request, res: Response) {
     });
     return;
   }
-
   // Create a Tasting
-  const tasting = {
-    userId: req.body.userId,
-    winery: req.body.winery,
-    year: req.body.year,
-    grape: req.body.grape,
-    fruit: req.body.fruit,
-    acidity: req.body.acidity,
-    tannins: req.body.tannins,
-    body: req.body.year,
-    dominantFlavors: req.body.dominantFlavors,
-    arrPossibleFlavors: req.body.arrPossibleFlavors,
-    overallRating: req.body.overallRating,
-  };
+  // const tasting = {
+  //   userId: req.body.userId,
+  //   winery: req.body.winery,
+  //   year: req.body.year,
+  //   grape: req.body.grape,
+  //   fruit: req.body.fruit,
+  //   acidity: req.body.acidity,
+  //   tannins: req.body.tannins,
+  //   body: req.body.year,
+  //   dominantFlavors: req.body.dominantFlavors,
+  //   arrPossibleFlavors: req.body.arrPossibleFlavors,
+  //   overallRating: req.body.overallRating,
+  // };
+  const {userId, winery, year, grape, fruit, acidity, tannins, body, dominantFlavors, arrPossibleFlavors, overallRating} = req.body;
 
   // Save Tasting in the database
- const data = await Tasting.create(tasting)
-    //Tasting.create(tasting)
-    .then(data => {
-      res.send(data);
-      res.status(200);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Tasting."
+  try {
+    const data = await Tasting.create({...req.body})
+    res.send(200).send(data);
+  } catch (error) {
+          res.status(500).send({
+        message:"Some error occurred while creating the Tasting."
       });
-    });
+  }
+
+  //Tasting.create(tasting)
+    // .then(data => {
+    //   res.send(data);
+    //   res.status(200);
+    // })
+    // .catch(err => {
+
+    // });
 };
 
 // Retrieve all Tastings from the database.

@@ -8,6 +8,17 @@ import bin from '../pictures/bin.svg';
 import Rating from '@material-ui/lab/Rating/index';
 import Box from '@material-ui/core/Box/index';
 
+interface IPossibleFlavors {
+  fruitFlavors: string[],
+  dryFruitFlavors: string[],
+  floralFlavors: string[],
+  herbalFlavors: string[],
+  spiceFlavors: string[],
+  earthFlavors: string[],
+  otherFlavors: string[],
+}
+
+
 interface IWineProps {
   id:number, 
   userId:number,
@@ -19,7 +30,8 @@ interface IWineProps {
   tannins: string,
   body:string,
   dominantFlavors:string[], 
-  arrPossibleFlavors:string[],
+  arrPossibleFlavors:string[], 
+  // possibleFlavors:IPossibleFlavors,
   overallRating: number,
 }
 
@@ -54,9 +66,24 @@ export default function WineCard( wine:IWineProps ) {
                 <div className='single__flavor'>{flavor}</div>)}
               </div>
               <div className='wine__card__flavors'>
-                PossibleFlavors Flavors: {wine.arrPossibleFlavors.map((flavor:string) => 
+                Possible Flavors: {wine.arrPossibleFlavors.map((flavor:string) => 
                 <div className='single__flavor'>{flavor}</div>)}
               </div>
+              
+              
+              {/* <div className='wine__card__flavors'>   
+                Possible Flavors: 
+                {Object.entries(wine.possibleFlavors).forEach(([flavor:string, value:string[]]) => {
+                  <h3>{flavor}</h3>  
+                  <div className='single__flavor'>{value}</div>)}
+                }
+              </div> */}
+              {/* <div className='wine__card__flavors'>
+                Possible Flavors: {wine.arrPossibleFlavors.map((possibleFlavor:string) => 
+                <div className='single__flavor'>{flavor}</div>)}
+              </div> */}
+
+
             </div>
           </div>
         </div>

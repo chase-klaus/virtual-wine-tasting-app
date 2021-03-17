@@ -1,4 +1,3 @@
-import * as React from 'react';
 import WineCard from '../WineCard/WineCard';
 import ApiService from '../ApiService';
 import { useEffect, useState } from 'react';
@@ -34,9 +33,10 @@ export default function WineList({user}: WineListProps) {
 
   const [wineListDB, setWineListDB] = useState<IWineProps[]>([])
 
+  // get tastings belonging to the user logged in
   useEffect(() => {
-    const dbId = user.userId
-    ApiService.getTastings(dbId)
+    const userId = user.userId
+    ApiService.getTastings(userId)
       .then((res) => setWineListDB(res))
   }, [])
 
@@ -44,12 +44,14 @@ export default function WineList({user}: WineListProps) {
   return (<div>
 
     {wineListDB ? <div className="wine__card__container">
-      {wineListDB.map((wine, index) => {
+      {wineListDB.map((wine) => {
         return (
         <div>
           {/* <WineCard wine={wine}/> */}
+          {/* do we HAVE to include the userId and id here?  */}
           <WineCard
             id={wine.id}
+            key={wine.id}
             userId={wine.userId}
             winery={wine.winery} 
             year={wine.year} 
