@@ -36,17 +36,23 @@ interface OverallRatingProps {
 
 export default function OverallRating({submitRating, wineList }: OverallRatingProps): JSX.Element {
 
+  const [value, setValue] = useState<number>(2);
+
   function handleChange(event: React.ChangeEvent<any>) {
-    setValue(value);
+    setValue(event.target.value);
+    console.log(event.target.value);
     submitRating(event.target.value);
   }
 
   function postTastingToDB() {
     console.log("wineList before post", wineList)
-    ApiService.postTasting(wineList);
+    const newWine = ApiService.postTasting(wineList);
+    try {
+      console.log(newWine);
+    } catch(err) {
+      console.log('error creating new tasting');
+    }
   }
-
-  const [value, setValue] = useState<number>(2);
 
   return (
     <div>
@@ -67,12 +73,17 @@ export default function OverallRating({submitRating, wineList }: OverallRatingPr
         </div>
 
         <div className='overall__text'>
-          Now that you have tasted the wine, you can evaluate it. Do all the traits in the wine balance one another? A wine that is out of balance will have characteristics that overpower other flavors in the wine, for example a jarring acidic flavor that dominates the taste. Take your time with wine that you enjoy. Identify what you prefer about them over other wines. You will find yourself to be more articulate when seeking new wine. We use a simple 5-point rating system with focus on drinkability
+          Now that you have tasted the wine, you can evaluate it. 
+          Do all the traits in the wine balance one another? A wine that is out of balance 
+          will have characteristics that overpower other flavors in the wine, for example a jarring 
+          acidic flavor that dominates the taste. Take your time with wine that you enjoy. Identify what 
+          you prefer about them over other wines. You will find yourself to be more articulate when seeking 
+          new wine. We use a simple 5-point rating system with focus on drinkability
         </div>
         <div>
-
-          <Link to="/winelist" className='add__wine__button'><button onClick={() => postTastingToDB()}>add wine to your wine list</button></Link>
-
+          <Link to="/winelist" className='add__wine__button'>
+            <button onClick={() => postTastingToDB()}>add wine to your wine list</button>
+          </Link>
         </div>
       </div>
     </div>

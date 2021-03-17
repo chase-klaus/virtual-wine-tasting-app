@@ -28,7 +28,7 @@ async function getTastings(id:number) {
   //     };
 
 // POST ONE TASTING TO DB
-function postTasting(options:any) {
+function postTasting(options:{userId:number, winery:string, year:number, grape:number, fruit:number, acidity:number, tannins:number, body:number, dominantFlavors:string[], arrPossibleFlavors:string[], overallRating:number}) {
   axios.post(url + '/api/tastings', options)
     .then(function (response) {
       console.log(response);
@@ -37,6 +37,15 @@ function postTasting(options:any) {
       console.log(error);
     });
 }
+// function postTasting(options:any) {
+//   axios.post(url + '/api/tastings', options)
+//     .then(function (response) {
+//       console.log(response);
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     });
+// }
 
 //DELETE TASTING BY ID
 function deleteTasting(id:number) {

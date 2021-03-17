@@ -25,25 +25,26 @@ export async function create(req: Request, res: Response) {
     return;
   }
   // Create a Tasting
-  // const tasting = {
-  //   userId: req.body.userId,
-  //   winery: req.body.winery,
-  //   year: req.body.year,
-  //   grape: req.body.grape,
-  //   fruit: req.body.fruit,
-  //   acidity: req.body.acidity,
-  //   tannins: req.body.tannins,
-  //   body: req.body.year,
-  //   dominantFlavors: req.body.dominantFlavors,
-  //   arrPossibleFlavors: req.body.arrPossibleFlavors,
-  //   overallRating: req.body.overallRating,
-  // };
-  const {userId, winery, year, grape, fruit, acidity, tannins, body, dominantFlavors, arrPossibleFlavors, overallRating} = req.body;
+  const tasting = {
+    userId: req.body.userId,
+    winery: req.body.winery,
+    year: req.body.year,
+    grape: req.body.grape,
+    fruit: req.body.fruit,
+    acidity: req.body.acidity,
+    tannins: req.body.tannins,
+    body: req.body.year,
+    dominantFlavors: req.body.dominantFlavors,
+    arrPossibleFlavors: req.body.arrPossibleFlavors,
+    overallRating: req.body.overallRating,
+  };
+  // const {userId, winery, year, grape, fruit, acidity, tannins, body, dominantFlavors, arrPossibleFlavors, overallRating} = req.body;
 
   // Save Tasting in the database
   try {
-    const data = await Tasting.create({...req.body})
-    res.send(200).send(data);
+    console.log(tasting);
+    const data = await Tasting.create(tasting)
+    res.status(200).json(data);
   } catch (error) {
           res.status(500).send({
         message:"Some error occurred while creating the Tasting."
@@ -77,30 +78,30 @@ export function findAll(req: Request, res: Response) {
     });
 };
 
-// // Delete a Tasting with the specified id in the request
-// const deleteTasting = (req, res) => {
-//   const id = req.params.id;
+// Delete a Tasting with the specified id in the request
+export function deleteTasting (req: Request, res: Response) {
+  const id = req.params.id;
 
-//   Tasting.destroy({
-//     where: { id: id }
-//   })
-//     .then(num => {
-//       if (num == 1) {
-//         res.send({
-//           message: "Tasting was deleted successfully!"
-//         });
-//       } else {
-//         res.send({
-//           message: `Cannot delete Tasting with id=${id}. Maybe Tasting was not found!`
-//         });
-//       }
-//     })
-//     .catch(err => {
-//       res.status(500).send({
-//         message: "Could not delete Tasting with id=" + id
-//       });
-//     });
-// };
+  Tasting.destroy({
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: "Tasting was deleted successfully!"
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Tasting with id=${id}. Maybe Tasting was not found!`
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Tasting with id=" + id
+      });
+    });
+};
 
 // Find a single Tasting with an id
 export function findOne(req: Request, res: Response) {

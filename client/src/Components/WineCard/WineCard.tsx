@@ -1,5 +1,5 @@
 import ApiService from '../ApiService';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import bottle from '../pictures/bottle.svg';
 import bin from '../pictures/bin.svg';
@@ -17,7 +17,6 @@ interface IPossibleFlavors {
   earthFlavors: string[],
   otherFlavors: string[],
 }
-
 
 interface IWineProps {
   id:number, 
@@ -39,9 +38,19 @@ interface IWineProps {
 export default function WineCard( wine:IWineProps ) {
   // eslint-disable-next-line
   const [value, setValue] = useState(wine.overallRating);
+
+  // when you delete something, make sure its deleted from the screen without having to refresh it
+  // whenever the list of wine changes... 
+  useEffect(()=>{
+    setValue(wine.overallRating);
+  }, [value])
+
+
   return (
     <div className='wine__card'>
-      <div onClick={() => ApiService.deleteTasting(wine.id)} className="delete__btn__wine__card"><img src={bin} alt="bin delete sybol" className="bin__delete__symbol"></img></div>
+      <div onClick={() => ApiService.deleteTasting(wine.id)} className="delete__btn__wine__card">
+        <img src={bin} alt="bin delete sybol" className="bin__delete__symbol"/>
+      </div>
       <div className="wrapper__wine__card">
         <div className="wine__card__headline">
           <div className="wine__card__winery">{wine.winery}</div>
@@ -69,25 +78,9 @@ export default function WineCard( wine:IWineProps ) {
                 Possible Flavors: {wine.arrPossibleFlavors.map((flavor:string) => 
                 <div className='single__flavor'>{flavor}</div>)}
               </div>
-              
-              
-              {/* <div className='wine__card__flavors'>   
-                Possible Flavors: 
-                {Object.entries(wine.possibleFlavors).forEach(([flavor:string, value:string[]]) => {
-                  <h3>{flavor}</h3>  
-                  <div className='single__flavor'>{value}</div>)}
-                }
-              </div> */}
-              {/* <div className='wine__card__flavors'>
-                Possible Flavors: {wine.arrPossibleFlavors.map((possibleFlavor:string) => 
-                <div className='single__flavor'>{flavor}</div>)}
-              </div> */}
-
-
             </div>
           </div>
         </div>
-
         <div className="wine__card__rating">
           <Box component="fieldset" mb={3} borderColor="transparent" className="hola">
             <Rating name="read-only" value={value} readOnly />
@@ -95,6 +88,5 @@ export default function WineCard( wine:IWineProps ) {
         </div>
       </div>
     </div>
-
   )
 }

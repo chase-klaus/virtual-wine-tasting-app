@@ -39,7 +39,11 @@ export default function WineList({user}: WineListProps) {
     ApiService.getTastings(userId)
       .then((res) => setWineListDB(res))
   }, [])
-
+  
+  // i want it to reload whenever there is a change to the winelist, but it gives me an infinite loop
+  useEffect(() => {
+    setWineListDB([])
+  }, [setWineListDB])
 
   return (<div>
 
@@ -50,8 +54,8 @@ export default function WineList({user}: WineListProps) {
           {/* <WineCard wine={wine}/> */}
           {/* do we HAVE to include the userId and id here?  */}
           <WineCard
-            id={wine.id}
             key={wine.id}
+            id={wine.id}
             userId={wine.userId}
             winery={wine.winery} 
             year={wine.year} 

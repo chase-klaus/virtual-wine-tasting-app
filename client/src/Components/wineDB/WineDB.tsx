@@ -117,7 +117,7 @@ const merlot:IWineType = {
       "Coffee",
       "Cedar",
       "Incense",
-      "Backing Spices",
+      "Baking Spices",
       "Chocolate",
       "Vanilla",
     ],
@@ -144,7 +144,7 @@ const cabernetsauvignon: IWineType = {
     "Black Cherry",
     "Black Currant",
     "Red Bell Pepper",
-    "Backing Spcices",
+    "Baking Spcices",
     "Cedar",
   ],
   possibleFlavors:{
