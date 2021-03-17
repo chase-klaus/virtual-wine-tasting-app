@@ -151,9 +151,10 @@ export default function WineTasting({ user }: WineTastingProps) {
       {startTasting === false ? (<div className='centered__container__start__tasting'>
         {console.log("render happening")}
         <div className="form__container">
-
           <form onSubmit={handleSubmit}>
+            <label htmlFor='new-wine-tasting'>New Wine Tasting</label>
             <input
+              id='new-wine-tasting'
               className="start__tasting__input"
               type="text"
               value={winery}

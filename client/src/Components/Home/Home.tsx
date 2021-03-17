@@ -45,7 +45,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
           <p className="p__home">We are living in hard times ... And since drinking might not be considered as a long term solution by many people the enjoyment 
                                 of wine offers far more than alcohol. Discovering all flavors, aromas and odors of a good glas of wine - especially in good company 
                                 - can bring happiness to your life. 
-                                <Link to="/tasting"> Start</Link> a new wine tasting session</p>
+                                <Link title='startTasting' role='link' to="/tasting"> Start</Link> a new wine tasting session</p>
         </div>
       </div>
 

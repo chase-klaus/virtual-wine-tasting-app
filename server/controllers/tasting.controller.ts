@@ -103,13 +103,13 @@ export function deleteTasting (req: Request, res: Response) {
     });
 };
 
-// Find a single Tasting with an id
-export function findOne(req: Request, res: Response) {
-};
+// // Find a single Tasting with an id
+// export function findOne(req: Request, res: Response) {
+// };
 
-// Update a Tasting by the id in the request
-export function update(req: Request, res: Response) {
-};
+// // Update a Tasting by the id in the request
+// export function update(req: Request, res: Response) {
+// };
 
 
 // maybe send an update --> PUT 
