@@ -1,11 +1,6 @@
 import "./App.css";
-<<<<<<< HEAD
-// import * as React from 'react';
-import { useState } from "react";
-=======
 import { useState } from "react";
 //@ts-ignore
->>>>>>> klaus/deida
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import WineTasting from "./Components/WineTasting/WineTasting";
 import WineList from "./Components/WineList/WineList";
@@ -13,12 +8,6 @@ import Login from "./Components/Login/Login";
 import User from "./Components/User/User";
 import Home from "./Components/Home/Home";
 
-interface ILoginUserProps{
-    mail: string,
-    password: string,
-    userId: number,
-    validated: boolean 
-}
 
 interface ISetUser {
   mail: string;
@@ -26,26 +15,18 @@ interface ISetUser {
   userId: number;
 }
 
-interface ILogin {
-  user: ISetUser,
-  validated:boolean
-}
-
 export default function App(): JSX.Element {
 
   const [user, setUser] = useState<ISetUser>({ mail: '', password: '', userId: 0 });
   const [userValidated, setUserValidated] = useState<boolean>(false);
 
-<<<<<<< HEAD
-  function loginUser({ mail, password, userId, validated }: any) {
-    setUser({ mail: mail, password: password, userId: userId });
-=======
-  function loginUser(mail:string, password:string, userId:number, validated:boolean) {
-    setUser({ mail: mail, 
-              password: password, 
-              userId: userId });
->>>>>>> klaus/deida
-    setUserValidated(!validated);
+  function loginUser(mail: string, password: string, userId: number, validated: boolean) {
+    setUser({
+      mail: mail,
+      password: password,
+      userId: userId
+    });
+    setUserValidated(validated);
   }
 
   return (
@@ -78,10 +59,10 @@ export default function App(): JSX.Element {
             <Route path="/">{<Home />}</Route>
           </Switch>
         </div>
-      </div>) : 
-      (<div className="login__container">
-        <Login loginUser={loginUser} />
-      </div>)}
+      </div>) :
+        (<div className="login__container">
+          <Login loginUser={loginUser} />
+        </div>)}
     </Router>
   );
 }

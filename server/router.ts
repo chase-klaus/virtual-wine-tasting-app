@@ -19,13 +19,14 @@ import * as user from './controllers/user.controller';
   // USER
   // Create a new user
   router.post("/api/user", user.create);
+  router.post("/api/login", user.login);
 
   //Get user from db with id
-  router.get("/api/user/:id", user.findOne);
+  // router.get("/api/user/:id", user.findOne);
 
   //GET ALL USER FROM DB 
   router.get("/api/allusers", user.findAllUsers);
 
-  // router.get("/api/:mail", user.findOneByMail)
+  router.get("/api/userByMail/:mail", user.findOneByMail);
 
 export default router;

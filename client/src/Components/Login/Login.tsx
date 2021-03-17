@@ -1,28 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/index';
 import ApiService from '../ApiService';
 
-// is this correct? NO loginuser is a function
-interface ILoginUserProps{
+interface ILoginUserProps {
   loginUser: (
-    mail:string, 
-    password:string, 
-    userId:number, 
-    validated:boolean) => void
+    mail: string,
+    password: string,
+    userId: number,
+    validated: boolean
+  ) => void
 }
 
 interface IUser {
-  mail:string, 
-  password:string, 
-  id:number
+  mail: string,
+  password: string,
+  id: number
 }
 // React.FormEventHandler<HTMLFormElement>
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 type ButtonEvent = React.FormEvent;
 
-export default function Login({loginUser}:ILoginUserProps) {
+export default function Login({ loginUser }: ILoginUserProps) {
 
   // LOGIN - STATES
   const [mail, setMail] = useState("");
@@ -39,63 +39,60 @@ export default function Login({loginUser}:ILoginUserProps) {
   const [userExists, setUserExists] = useState(true);
   const [successfullyRegistrated, setSuccessfullyRegistrated] = useState(false);
 
-  useEffect(() => {
-    checkIfUserIsInDatabase()
-  }, [mail])
+  // useEffect(() => {
+  //   checkIfUserIsInDatabase()
+  // }, [mail])
 
-  // async function getAllUsers() {
-  //   const users = await ApiService.getUsers()
-  //   setUsers(users)
-  // }
-  
-  // event:React.ChangeEvent<HTMLInputElement>
 
-  const handleSubmit = (event:ButtonEvent) => {
-    event.preventDefault();
-    if (mail && password && isRegistered === true && password === passwordFromDB) {
-      loginUser(mail, password, userId, true)
-    } else setError(true);
+  const handleChangeMail = (event: InputEvent) => {
+    if (error) setError(false);
+    setMail(event.target.value);
+    console.log(mail);
+  }
+
+  const handleChangePassword = (event: InputEvent) => {
+    if (error) setError(false);
+    setPassword(event.target.value);
   }
 
   const checkIfUserIsInDatabase = async () => {
-    const users = await ApiService.getUsers()
+
+    console.log(mail);
+    const user = await ApiService.login(mail);
+    console.log(user);
     try {
-      users.map((user:IUser) => {
-        if (user.mail === mail) {
-          setIsRegistered(true);
-          setPasswordFromDB(user.password)
-          setUserId(user.id)
-          console.log("found")
-        }
-      })
+      if (user.password === password) {
+        const { id } = user;
+        setIsRegistered(true);
+        setUserId(user.id);
+        setPasswordFromDB(user.password);
+        loginUser(mail, password, id, true);
+      } else {
+        alert('Your email or password are incorrect.');
+      }
     } catch (error) {
       console.log(error)
     }
   }
 
-  const handleChangeMail= (event:InputEvent) => {
-    if (error) setError(false);
-    setMail(event.target.value);
-    checkIfUserIsInDatabase()
-  }
 
-  const handleChangePassword = (event:InputEvent) => {
-    if (error) setError(false);
-    setPassword(event.target.value);
+  const handleSubmit = (event: ButtonEvent) => {
+    event.preventDefault();
+    checkIfUserIsInDatabase();
   }
 
   //REGISTRATION - FUNCTIONS
-  const handleChangeNewMail = (event:InputEvent) => {
+  const handleChangeNewMail = (event: InputEvent) => {
     if (error) setError(false);
     setNewMail(event.target.value);
   }
 
-  const handleChangeNewPassword = (event:InputEvent) => {
+  const handleChangeNewPassword = (event: InputEvent) => {
     if (error) setError(false);
     setNewPassword(event.target.value);
   }
 
-  const handleRegistrationSubmit = (event:ButtonEvent) => {
+  const handleRegistrationSubmit = (event: ButtonEvent) => {
     event.preventDefault();
     if (newMail && newPassword) {
       setNewMail(newMail);
@@ -107,61 +104,62 @@ export default function Login({loginUser}:ILoginUserProps) {
   const registerUser = () => {
     ApiService.postUser({ mail: newMail, password: newPassword });
     setSuccessfullyRegistrated(true);
-    setTimeout(function () { 
-      setUserExists(true); }
+    setTimeout(function () {
+      setUserExists(true);
+    }
       , 1500);
   }
 
   return (
     <div>
-    {userExists === true ? (<div className="centered__container__login">
-      <div className='login__headline'><h2>User Login</h2></div>
-      <div className="login__form">
-        <form onSubmit={handleSubmit}>
-          <input
-            className='input__login'
-            type="text"
-            value={mail}
-            onChange={handleChangeMail}
-            placeholder="Type in your user name ..."
-          ></input>
-          <input
-            className='input__login'
-            type="password"
-            value={password}
-            onChange={handleChangePassword}
-            placeholder="Type in your password ..."
-          ></input>
-          <button type="submit" className='login__btn'>login</button>
-        </form>
+      {userExists === true ? (<div className="centered__container__login">
+        <div className='login__headline'><h2>User Login</h2></div>
+        <div className="login__form">
+          <form onSubmit={handleSubmit}>
+            <input
+              className='input__login'
+              type="text"
+              value={mail}
+              onChange={handleChangeMail}
+              placeholder="Type in your user name ..."
+            ></input>
+            <input
+              className='input__login'
+              type="password"
+              value={password}
+              onChange={handleChangePassword}
+              placeholder="Type in your password ..."
+            ></input>
+            <button type="submit" className='login__btn'>login</button>
+          </form>
+        </div>
+        <div className='go__to__register'>to create a new user click <div onClick={() => setUserExists(false)} className='go__to__register__btn'>here</div></div>
+      </div>) : successfullyRegistrated === false ? (<div className="centered__container__login">
+        <div className='login__headline'><h2>Register new User</h2></div>
+        <div className="login__form">
+          <form onSubmit={handleRegistrationSubmit}>
+            <input
+              className='input__login'
+              type="text"
+              value={newMail}
+              onChange={handleChangeNewMail}
+              placeholder="Type in your user name ..."
+            ></input>
+            <input
+              className='input__login'
+              type="password"
+              value={newPassword}
+              onChange={handleChangeNewPassword}
+              placeholder="Type in your password ..."
+            ></input>
+            <button type="submit" className='login__btn' onClick={() => console.log(newMail, newPassword)}>register</button>
+          </form>
+        </div>
+      </div>) : (<div className='successfully__registred'>
+        <div><FontAwesomeIcon icon={faCheck} size="5x" className='successfully__registred__logo' /></div>
+        <div>User successfully registered</div>
       </div>
-      <div className='go__to__register'>to create a new user click <div onClick={() => setUserExists(false)} className='go__to__register__btn'>here</div></div>
-    </div>) : successfullyRegistrated === false ? (<div className="centered__container__login">
-      <div className='login__headline'><h2>Register new User</h2></div>
-      <div className="login__form">
-        <form onSubmit={handleRegistrationSubmit}>
-          <input
-            className='input__login'
-            type="text"
-            value={newMail}
-            onChange={handleChangeNewMail}
-            placeholder="Type in your user name ..."
-          ></input>
-          <input
-            className='input__login'
-            type="password"
-            value={newPassword}
-            onChange={handleChangeNewPassword}
-            placeholder="Type in your password ..."
-          ></input>
-          <button type="submit" className='login__btn' onClick={() => console.log(newMail, newPassword)}>register</button>
-        </form>
-      </div>
-    </div>) : (<div className='successfully__registred'>
-      <div><FontAwesomeIcon icon={faCheck} size="5x" className='successfully__registred__logo' /></div>
-      <div>User successfully registered</div>
+      )}
     </div>
-    )}
-  </div>
   )
 }

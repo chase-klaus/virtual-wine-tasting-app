@@ -1,26 +1,15 @@
 import * as React from 'react';
 
-<<<<<<< HEAD
-interface IUserProps {
-  user: IUser;
-}
-
-=======
->>>>>>> klaus/deida
 interface IUser {
   mail:string, 
   password:string, 
   userId:number
 }
 
-<<<<<<< HEAD
-export default function User({ user }:IUserProps) {
-=======
 interface IUserProps {
   user: IUser
 }
 export default function User({user}:IUserProps) {
->>>>>>> klaus/deida
 
   return (
   <div>

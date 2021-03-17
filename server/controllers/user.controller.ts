@@ -1,37 +1,57 @@
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 import User from '../models/user.model';
+const SECRET_KEY = process.env.SECRET_KEY || 'thisisourwinetastingapp';
 
-// interface IUser {
-//   mail: string;
-//   password: string;
-// }
-
-export const create = async (req:Request, res:Response) => {
-  console.log(req.body);
-  const { mail, password } = req.body;
-  if (!mail && password) return res.status(400);
+export const create = async (req: Request, res: Response) => {
+  const user = await User.findOne({ where: { mail: req.body.mail } });
+  if (user)
+    return res
+      .status(409)
+      .send({ error: "409", message: "User already exists " });
   try {
-    const user = await User.create({ ...req.body });
-    res.status(200).json(user);
-  } catch (err) {
-    res.status(500);
-    console.log(err, "Something went v wrong in create user");
+    if (req.body.password === "") throw new Error();
+    const hash = await bcrypt.hash(req.body.password, 10);
+    const newUser: any = User.create({
+      mail: req.body.mail,
+      password: hash,
+    });
+    const { id } = await newUser.save();
+    const token = jwt.sign({ id }, SECRET_KEY)
+    res.status(201).send({ token });
+  } catch (error) {
+    res.status(500).send({ error, message: "Could not create user" });
   }
 };
 
-export async function findOne (req: Request, res: Response) {
-  const id = req.params.id;
+export async function login(req: Request, res: Response) {
+  const { password } = req.body;
   try {
-    const data = await User.findByPk(id);
-    res.json(data);
+    const user: any = await User.findOne( {where: { mail: req.body.mail }});
+    const validatePass: any = await bcrypt.compare(password, user.password);
+    if (!validatePass) throw new Error();
+    const token = jwt.sign({ id: user.id }, SECRET_KEY);
+    res.status(200).send({ token });
+  } catch (err) {
+    res.status(500);
+    console.log(err, "Could not login");
+  }
+};
+
+export async function findOneByMail(req: Request, res: Response) {
+  const mail = req.params.mail;
+  try {
+    const user = await User.findOne({ where: { mail: mail } });
+    res.json(user);
     res.status(200);
   } catch (err) {
     res.status(500);
-    console.log(err, "Error retrieving User with id=" + id);
+    console.log(err, "Error retrieving User with mail= " + mail);
   }
-};
+}
 
-export const findAllUsers = async (res:Response) => {
+export const findAllUsers = async (req: Request, res: Response) => {
   const users = await User.findAll();
   if (!users) return res.status(404);
   try {

@@ -1,6 +1,7 @@
 'use strict';
 
-require('dotenv').config(); 
+import { config } from 'dotenv';
+config(); 
 import express from 'express';
 import router from './router';
 import cors from 'cors';
@@ -21,7 +22,7 @@ app.get("/", (res: express.Response) => {
 
 sequelize.sync();
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}🍷.`);
 });
