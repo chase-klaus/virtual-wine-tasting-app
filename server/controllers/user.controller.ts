@@ -24,8 +24,8 @@ export async function findOne (req: Request, res: Response) {
   const id = req.params.id;
   try {
     const data = await User.findByPk(id);
-    res.json(data);
-    res.status(200);
+    // res.json(data);
+    res.status(200).send(data);
   } catch (err) {
     res.status(500);
     console.log(err, "Error retrieving User with id=" + id);
@@ -34,11 +34,12 @@ export async function findOne (req: Request, res: Response) {
 
 export async function findOneByMail (req: Request, res: Response) {
   // const mail = req.body.mail;
-    const mail = req.params.mail;
+  const mail = req.params.mail;
+  const user = await User.findOne({where:{mail:mail}});
+  if(!user) return res.status(500).send({message:"not found"});
   try {
-    const user = await User.findOne({where:{mail:mail}});
-    res.json(user);
-    res.status(200);
+    // if(!user) return res.status(404);
+    res.status(200).send(user);
   } catch (err) {
     res.status(500);
     console.log(err, "Error retrieving User with email= " + mail);
@@ -49,8 +50,8 @@ export const findAllUsers = async (req: Request, res:Response) => {
   const users = await User.findAll();
   if (!users) return res.status(404);
   try {
-    res.json(users);
     res.status(200);
+    res.json(users);
   } catch (err) {
     res.status(500);
     console.log(err, "Some error occurred while retrieving users.");
