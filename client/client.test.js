@@ -4,12 +4,23 @@ import * as React from 'react';
 import {render, fireEvent, screen} from '@testing-library/react';
 
 // @ts-ignore
-it('Testing to see if Jest works', () => {
-  expect(1).toBe(1)
+it('true is truthy and false is falsy', () => {
+  test('true is truthy', () => {
+    expect(true).toBe(true);
+  });
+  test('false is falsy', () => {
+    expect(false).toBe(false);
+  })
 })
-
 test('loads items', async() => {
   render(<App />)
+})
+
+
+describe('Login', () => {
+  render(<Login />)
+  const placeholderText = screen.getByPlaceholderText("Type in your user name")
+  expect(placeholderText).toBeInTheDocument();
 })
 
 // Test to see that logging in for the first time sends you to login page

@@ -56,6 +56,7 @@ export default function WineTasting({ user }: any) {
   const [possibleFlavors, setPossibleFlavors] = useState<any>({});
   const [dominantFlavors, setDominantFlavors] = useState<any>([]);
   const [wineList, setWineList] = useState<any>({});
+  const [notes, setNotes] = useState<string>('');
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -122,6 +123,12 @@ export default function WineTasting({ user }: any) {
     setPossibleFlavors(flavors);
   }
 
+  function updateNotes(value: string) {
+    if (error) setError(false);
+    setNotes(value);
+  }
+
+
   function submitRating(value: number) {
 
     let arrDominantFlavors = Object.values(dominantFlavors.flavors);
@@ -142,6 +149,7 @@ export default function WineTasting({ user }: any) {
         arrPossibleFlavors: arrPossibleFlavors,
         // possibleFlavors: possibleFlavors,
         overallRating: value,
+        notes: notes
       }
     )
   }
@@ -168,7 +176,7 @@ export default function WineTasting({ user }: any) {
               onChange={handleChangeYear}
               placeholder="Type in year ..."
             ></input>
-            <select value={grape} onChange={handleChangeGrape} name="grape" className="start__tasting__input">
+            <select data-testid='select' value={grape} onChange={handleChangeGrape} name="grape" className="start__tasting__input">
               <option disabled={true} value="">select grape variety</option>
               <option value='malbec'>Malbec</option>
               <option value='merlot'>Merlot</option>
@@ -230,7 +238,7 @@ export default function WineTasting({ user }: any) {
       )}
 
       {possibleFlavors.ratingCompleted === true ? (
-        <OverallRating submitRating={submitRating} wineList={wineList} />
+        <OverallRating submitRating={submitRating} notes={notes} wineList={wineList} updateNotes={updateNotes} />
       ) : (
         <></>
       )}

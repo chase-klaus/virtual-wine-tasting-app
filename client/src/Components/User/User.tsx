@@ -10,7 +10,7 @@ interface IUser {
 interface IUserProps {
   user: IUser
 }
-export default function User({user}: any ) {
+export default function User({user}: IUserProps ) {
 
   return (
   <div>

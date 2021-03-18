@@ -1,8 +1,7 @@
-import * as React from 'react';
 import WineCard from '../WineCard/WineCard';
 import ApiService from '../ApiService';
 import { useEffect, useState } from 'react';
-// import { IWineType } from 'Components/wineDB/WineDB';
+
 
 interface IUser {
   mail:string, 
@@ -12,13 +11,14 @@ interface IUser {
 
 interface IWineProps {
   id:number, 
+  userId:number,
   winery:string, 
   year:number, 
   grape:string, 
-  fruit: string, 
-  acidity:string,
-  tannins: string,
-  body:string,
+  fruit:number, 
+  acidity:number,
+  tannins:number,
+  body:number,
   dominantFlavors:string[], 
   arrPossibleFlavors:string[],
   overallRating: number,
@@ -33,13 +33,14 @@ export default function WineList({user}: any) {
   const [wineListDB, setWineListDB] = useState<IWineProps[]>([])
 
   useEffect(() => {
-    ApiService.getTastings(user.userId)
+    console.log(user);
+    const userId = user.userId;
+    ApiService.getTastings(userId)
       .then((res) => setWineListDB(res))
-  }, [wineListDB])
+  }, [])
 
 
   return (<div>
-
     {wineListDB ? <div className="wine__card__container">
       {wineListDB.map((wine, index) => {
         return (
@@ -47,6 +48,7 @@ export default function WineList({user}: any) {
           {/* <WineCard wine={wine}/> */}
           <WineCard
             id={wine.id}
+            userId={wine.userId}
             winery={wine.winery} 
             year={wine.year} 
             grape={wine.grape} 

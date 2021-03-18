@@ -30,7 +30,7 @@ const malbec:IWineType = {
     "Australia",
     "Italy",
   ],
-  dominantFlavors: ["Plum", "Blueberry", "Vanilla", "Tabacco", "Cocoa"],
+  dominantFlavors: ["Plum", "Blueberry", "Vanilla", "Tobacco", "Cocoa"],
   possibleFlavors: {
     fruits: ["Cherry", "Black Raspberry"],
     dryFruits: ["Raisin", "Prune"],
@@ -55,7 +55,7 @@ const pinotnoir:IWineType = {
     "Australia",
     "Italy",
   ],
-  dominantFlavors: ["Cranberry", "Cherry", "Rasberry", "Clove", "Mushroom"],
+  dominantFlavors: ["Cranberry", "Cherry", "Raspberry", "Clove", "Mushroom"],
   possibleFlavors: {
     fruits: [
       "Pomegranate",
@@ -67,7 +67,7 @@ const pinotnoir:IWineType = {
     ],
     dryFruits: [],
     florals: ["Iris", "Violet", "Hibiscus", "Rose", "Potpourri"],
-    herbs: ["Dried Herbes"],
+    herbs: ["Dried Herbs"],
     spices: [
       "Cinnamon",
       "Baking Spices",
@@ -80,7 +80,7 @@ const pinotnoir:IWineType = {
       "Truffle",
       "Potting Soil",
       "Dried Leaves",
-      "Tabacco",
+      "Tobacco",
       "Gun Smoke",
       "Cocoa",
     ],
@@ -111,7 +111,7 @@ const merlot:IWineType = {
     ],
     dryFruits: ["Fig", "Fruit Cake"],
     florals: ["Violet"],
-    herbs: ["Bay Leafe", "Sage", "Anise"],
+    herbs: ["Bay Leaf", "Sage", "Anise"],
     spices: [
       "Toffee",
       "Coffee",
@@ -144,7 +144,7 @@ const cabernetsauvignon: IWineType = {
     "Black Cherry",
     "Black Currant",
     "Red Bell Pepper",
-    "Backing Spcices",
+    "Backing Spices",
     "Cedar",
   ],
   possibleFlavors:{
@@ -166,8 +166,7 @@ const cabernetsauvignon: IWineType = {
       "Vanilla",
       "Nutmeg",
       "Toffee",
-      "",
-      "Pipe Tabacco",
+      "Pipe Tobacco",
     ],
     earthFlavors: [
       "Wet Gravel",
@@ -199,7 +198,7 @@ const syrah:IWineType = {
     "Blueberry",
     "Plum",
     "Milk Chocolate",
-    "Tabacco",
+    "Tobacco",
     "Green Peppercorn",
   ],
   possibleFlavors: {
@@ -218,7 +217,7 @@ const syrah:IWineType = {
     florals: ["Lavender", "Eucalyptus"],
     herbs: ["Sage"],
     spices: [
-      "Tabacco Leaf",
+      "Tobacco Leaf",
       "Cardamom",
       "Star Anis",
       "Licorice",
@@ -249,8 +248,8 @@ const gewürztraminer:IWineType = {
   dominantFlavors: ["Lychee", "Rose", "Pink Grapefruit", "Tangerine", "Guava"],
   possibleFlavors: {
     fruits: [
-      "Lemon Cest",
-      "Orange Cest",
+      "Lemon Zest",
+      "Orange Zest",
       "Tangerine",
       "Mirabelle",
       "White Nectarine",
@@ -287,8 +286,8 @@ const riesling:IWineType = {
     ],
     dryFruits: [""],
     florals: ["Jasmine"],
-    herbs: ["Ginger", "Thai Basil", "Rosmary"],
-    spices: ["Cinamon", "Nutmeg", "Vanilla"],
+    herbs: ["Ginger", "Thai Basil", "Rosemary"],
+    spices: ["Cinnamon", "Nutmeg", "Vanilla"],
     earthFlavors: ["Chalk", "Wet Slate"],
     others: [""],
   },

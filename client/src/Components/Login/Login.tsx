@@ -25,11 +25,11 @@ type ButtonEvent = React.FormEvent;
 
 const initialState = {
   mail: '',
-  password: ''
+  password: '',
 };
 
 export default function Login(props) {
-
+  console.log(props);
   // LOGIN - STATES
   // const [mail, setMail] = useState("");
   // const [password, setPassword] = useState("");
@@ -37,7 +37,7 @@ export default function Login(props) {
   // const [isRegistered, setIsRegistered] = useState(false);
   // const [passwordFromDB, setPasswordFromDB] = useState("");
   // const [users, setUsers] = useState([])
-  const [state, setState] = useState(initialState);
+  const [user, setUser] = useState(initialState);
 
   // REGISTRATION - STATES
   const [newMail, setNewMail] = useState("");
@@ -76,7 +76,7 @@ export default function Login(props) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setState((prevState) => ({
+    setUser((prevState) => ({
       ...prevState,
       [name]: value
     }));
@@ -84,12 +84,12 @@ export default function Login(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { mail, password } = state;
-    const user = { mail, password };
-    const res: any = await ApiService.login(user);
+    const { mail, password } = user;
+    const newUser = { mail, password };
+    const res: any = await ApiService.login(newUser);
     if (res.error) {
       alert(`${res.message}`);
-      setState(initialState);
+      setUser(initialState);
     } else {
       const token = res;
       localStorage.setItem('token', token);
@@ -99,7 +99,7 @@ export default function Login(props) {
   }
 
   function validateForm() {
-    return !state.mail || !state.password;
+    return !user.mail || !user.password;
   }
 
   //REGISTRATION - FUNCTIONS
@@ -141,7 +141,7 @@ export default function Login(props) {
               className='input__login'
               type="text"
               name="mail"
-              value={state.mail}
+              value={user.mail}
               onChange={handleChange}
               placeholder="Type in your user name ..."
             ></input>
@@ -149,7 +149,7 @@ export default function Login(props) {
               className='input__login'
               type="password"
               name="password"
-              value={state.password}
+              value={user.password}
               onChange={handleChange}
               placeholder="Type in your password ..."
             ></input>

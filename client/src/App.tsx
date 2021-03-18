@@ -20,17 +20,7 @@ export default function App(): JSX.Element {
   const initialState = auth.isAuthenticated();
   const [isAuthenticated, setIsAuthenticated] = useState(initialState);
 
-  // const [user, setUser] = useState<ISetUser>({ mail: '', password: '', userId: 0 });
-  // const [userValidated, setUserValidated] = useState<boolean>(false);
-
-  // function loginUser(mail: string, password: string, userId: number, validated: boolean) {
-  //   setUser({
-  //     mail: mail,
-  //     password: password,
-  //     userId: userId
-  //   });
-  //   setUserValidated(validated);
-  // }
+  const [user, setUser] = useState<ISetUser>({ mail: '', password: '', userId: 0 });
 
   return (
     <Router>
@@ -56,22 +46,19 @@ export default function App(): JSX.Element {
           <Switch>
             <Route
               path="/tasting"
-              render={(props) => (
-                <WineTasting {...props} setIsAuthenticated={setIsAuthenticated} />
+              render={(user) => (
+                <WineTasting user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} />
               )}
             />
             <Route
               path="/winelist"
-              render={(props) => (
-                <WineList {...props} setIsAuthenticated={setIsAuthenticated} />
+              render={(user) => (
+                <WineList user={user} setIsAuthenticated={setIsAuthenticated} />
               )}
             />
-            <Route
-              path="/user"
-              render={(props) => (
-                <User {...props} setIsAuthenticated={setIsAuthenticated} />
-              )}
-            />
+            <Route path="/user">
+              {<User user={user}/>}
+            </Route>
             <Route path="/" render={() => (
               <Home />
             )}
@@ -80,8 +67,18 @@ export default function App(): JSX.Element {
         </div>
       </div>) :
         (<div className="login__container">
-          <Login setIsAuthenticated={setIsAuthenticated} />
+          <Login user={user} setIsAuthenticated={setIsAuthenticated} />
         </div>)}
     </Router>
   );
 }
+// const [userValidated, setUserValidated] = useState<boolean>(false);
+
+// function loginUser(mail: string, password: string, userId: number, validated: boolean) {
+//   setUser({
+//     mail: mail,
+//     password: password,
+//     userId: userId
+//   });
+//   setUserValidated(validated);
+// }

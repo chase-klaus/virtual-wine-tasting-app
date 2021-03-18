@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ApiService from '../ApiService';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import bottle from '../pictures/bottle.svg';
 import bin from '../pictures/bin.svg';
@@ -10,25 +10,47 @@ import Rating from '@material-ui/lab/Rating/index';
 import Box from '@material-ui/core/Box/index';
 
 interface IWineProps {
-  id:number, 
-  winery:string, 
-  year:number, 
-  grape:string, 
-  fruit: string, 
-  acidity:string,
-  tannins: string,
-  body:string,
-  dominantFlavors:string[], 
-  arrPossibleFlavors:string[],
+  id: number,
+  userId: number,
+  winery: string,
+  year: number,
+  grape: string,
+  fruit: number,
+  acidity: number,
+  tannins: number,
+  body: number,
+  dominantFlavors: string[],
+  arrPossibleFlavors: string[],
   overallRating: number,
 }
 
 // TODO double check that these are correctly named as strings, they could be arrays of strings, actually, but since we are mapping... 
-export default function WineCard( wine:IWineProps ) {
+export default function WineCard(wine: IWineProps) {
   const [value, setValue] = useState(wine.overallRating);
+  const [wineListDB, setWineListDB] = useState<IWineProps[]>([])
+
+  useEffect(() => {
+    setValue(wine.overallRating);
+  }, [value])
+
+  useEffect(() => {
+    ApiService.getTastings(wine.userId)
+      .then((res) => setWineListDB(res))
+  }, [setWineListDB])
+
+  function handleDelete(userId: number, wineId: number) {
+    ApiService.deleteTasting(wineId);
+    ApiService.getTastings(userId)
+      .then((res) => setWineListDB(res))
+  }
+
+
+
   return (
     <div className='wine__card'>
-      <div onClick={() => ApiService.deleteTasting(wine.id)} className="delete__btn__wine__card"><img src={bin} alt="bin delete sybol" className="bin__delete__symbol"></img></div>
+      <div onClick={() => handleDelete(wine.userId, wine.id)} className="delete__btn__wine__card">
+        <img src={bin} alt="bin delete sybol" className="bin__delete__symbol" />
+      </div>
       <div className="wrapper__wine__card">
         <div className="wine__card__headline">
           <div className="wine__card__winery">{wine.winery}</div>
@@ -38,8 +60,8 @@ export default function WineCard( wine:IWineProps ) {
 
         <div className="image__wrap__wine__card">
           <div>
-            <img alt="bottle" src={bottle}  id={wine.grape} className="bottle__image"/>
-          </div> 
+            <img alt="bottle" src={bottle} className="bottle__image" />
+          </div>
           <div className="wine__card__more__information">
             <div className="hover__profile__wine__card">
               <div>Fruit: {wine.fruit} / 5</div>
@@ -49,12 +71,12 @@ export default function WineCard( wine:IWineProps ) {
             </div>
             <div className="hover__flavors__wine__card">
               <div className='wine__card__flavors'>
-                Dominant Flavors: {wine.dominantFlavors.map((flavor:string) => 
+                Dominant Flavors: {wine.dominantFlavors.map((flavor: string) =>
                 <div className='single__flavor'>{flavor}</div>)}
               </div>
               <div className='wine__card__flavors'>
-                PossibleFlavors Flavors: {wine.arrPossibleFlavors.map((flavor:string) => 
-                <div className='single__flavor'>{flavor}</div>)}
+                PossibleFlavors Flavors: {wine.arrPossibleFlavors.map((flavor: string) =>
+                <div className='single__flavor'> {flavor + ' '}</div>)}
               </div>
             </div>
           </div>

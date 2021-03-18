@@ -57,6 +57,7 @@ button:hover:before,button:hover:after{
   grid-template-areas: 
       'nav'
       'main';
+  overflow-y: auto;
 }
 
 .main {
@@ -67,6 +68,7 @@ button:hover:before,button:hover:after{
   justify-content: center;
   height: 90vh;
   width: 100vw;
+  overflow: scroll;
 }
 
 .login__container {
@@ -87,6 +89,7 @@ button:hover:before,button:hover:after{
   padding: 1em;
   padding-left: 2em;
   padding-right: 2em;
+  z-index: 1;
 }
 
 .sticky {
@@ -125,6 +128,7 @@ button:hover:before,button:hover:after{
   display: inline-block;
   position: relative;
   top: 0.5em;
+  margin: .5em 0;
 }
 
 .link__navbar:after {    
@@ -221,13 +225,15 @@ button:hover:before,button:hover:after{
 /* START WINE TASTING */
 .centered__container__start__tasting {
   position: fixed;
-  top: 55%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   min-width: 50vw;
   min-height: 70vh;
   box-shadow: 0 0 10px -1px #3333;
   border: solid;
+  z-index: 2;
+  min-height: fit-content;
 }
 
 form {
