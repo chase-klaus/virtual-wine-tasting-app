@@ -20,6 +20,9 @@ import * as user from './controllers/user.controller';
   // Create a new user
   router.post("/api/user", user.create);
 
+  // login
+  router.post("/api/login", user.login);
+
   //Get user from db with id
   router.get("/api/user/:id", user.findOne);
 

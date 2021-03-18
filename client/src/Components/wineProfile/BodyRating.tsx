@@ -49,7 +49,7 @@ function BodyRating({ body, updateBody }: BodyRatingProps): JSX.Element {
 
           <details onClick={() => hideOrDisplayImage()}>
             <summary>How to rate the body</summary>
-            <p> Body is not a scientific term, but a categorization of stlye from lightest to boldest. The four characteristics of sweetnes, acidity, tannin, and alcohol each affect how light or bold a wine will taste. You can use terms like "light-bodied" or "full-bodied" to describe the style of wine you want to drink. Lighter wines e.g. have more acidity, lower alcohol, less tannin, less sweetness.</p>
+            <p> Body is not a scientific term, but a categorization of style from lightest to boldest. The four characteristics of sweetness, acidity, tannin, and alcohol each affect how light or bold a wine will taste. You can use terms like "light-bodied" or "full-bodied" to describe the style of wine you want to drink. Lighter wines e.g. have more acidity, lower alcohol, less tannin, less sweetness.</p>
           </details>
         </div>
       </div>

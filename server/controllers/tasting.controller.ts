@@ -37,8 +37,8 @@ export async function create(req: Request, res: Response) {
   //   arrPossibleFlavors: req.body.arrPossibleFlavors,
   //   overallRating: req.body.overallRating,
   // };
-  // const {userId, winery, year, grape, fruit, acidity, tannins, body, dominantFlavors, arrPossibleFlavors, overallRating} = req.body;
-  
+  const {userId, winery, year, grape, fruit, acidity, tannins, body, dominantFlavors, arrPossibleFlavors, overallRating} = req.body;
+  // const {userId, ...tasting} = req.body;
   // Save Tasting in the database
   try {
     console.log(req.body);
@@ -57,7 +57,6 @@ export async function create(req: Request, res: Response) {
     //   res.status(200);
     // })
     // .catch(err => {
-
     // });
 };
 

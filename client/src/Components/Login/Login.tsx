@@ -3,20 +3,22 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/index';
 import ApiService from '../ApiService';
-
+import auth from '../../utils/auth';
 // is this correct? NO loginuser is a function
 interface ILoginUserProps{
   loginUser: (
     mail:string, 
     password:string, 
     userId:number, 
-    validated:boolean) => void
+    validated:boolean, 
+    ) => void; 
+  authUser: (isAuth:boolean) =>void;
 }
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 type ButtonEvent = React.FormEvent;
 
-export default function Login({loginUser}:ILoginUserProps) {
+export default function Login({loginUser, authUser}:ILoginUserProps) {
 
   // LOGIN - STATES
   const [mail, setMail] = useState("");
@@ -45,20 +47,26 @@ export default function Login({loginUser}:ILoginUserProps) {
     if (error) setError(false);
     setPassword(event.target.value);
   }
-  
+
+  // const setValues = async () => {
+  //   try {
+  //       setMail(mail)
+  //       setUserId(id)
+  //       setPasswordFromDB(password);
+  //       loginUser(mail, password, id, true)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
   const checkIfUserIsInDatabase = async () => {
     const user = await ApiService.getUserByMail(mail)
     try {
-      if(user.password === password) {
-        console.log('passwords match')
         const {id} = user;
-        setIsRegistered(true);
+        // setIsRegistered(true);
         setUserId(id)
         setPasswordFromDB(password);
         loginUser(mail, password, id, true)
-      } else {
-        alert('email or password are incorrect')
-      }
     } catch (error) {
       console.log(error)
     }
@@ -67,6 +75,27 @@ export default function Login({loginUser}:ILoginUserProps) {
   const handleSubmit = (event:ButtonEvent) => {
     event.preventDefault();
     checkIfUserIsInDatabase();
+    handleLogin();
+  }
+
+  const handleLogin = async () => {
+    console.log('goingin')
+    const res = await ApiService.login({mail, password});
+    console.log(res) 
+    try {
+      if(res.error) {
+        console.log(`login error ${res.message}`); 
+        console.log('isnotauth')
+        authUser(false);
+      } else {
+         const token = res;
+          localStorage.setItem('token', token);
+          console.log('isauth')
+          authUser(true);
+      }
+    } catch (error) {
+     console.log(error)
+    }
   }
 
   //REGISTRATION - FUNCTIONS

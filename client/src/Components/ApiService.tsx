@@ -69,6 +69,18 @@ function postUser(options:{mail: string, password: string}) {
     });
 }
 
+
+async function login(options: { mail: string, password: string }) {
+  try {
+    console.log('inaxios')
+    const response = await axios.post(url + '/api/login', options);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // GET ALL USERS
 async function getUsers() {
   try {
@@ -91,7 +103,7 @@ async function getUserByMail(mail:string) {
 }
 
 
-const apiExports = { getTastings, postTasting, deleteTasting, postUser, getUsers, getUserByMail };
+const apiExports = { getTastings, postTasting, deleteTasting, postUser, getUsers, getUserByMail, login };
 
 export default apiExports;
 

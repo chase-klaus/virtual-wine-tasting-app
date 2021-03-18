@@ -1,0 +1,38 @@
+/* USER DATA */
+.centered__container__user {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 40vw;
+  min-height: 60vh;
+  box-shadow: 0 0 10px -1px #3333;
+  border: solid ;
+}
+
+.user__headline {
+  font-size: 2em;
+  position: absolute;
+  right: 2em;
+  margin-top: -1.1em;
+  background-color: whitesmoke;
+  padding-left: 0.4em;
+  padding-right: 0.6em;
+}
+
+.user__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 2em;
+  padding: 4.5em;
+  margin-left: 2em;
+}
+
+.logout__btn {
+  color: blue;
+}
+
+.logout__btn:hover {
+  text-decoration: underline;
+}

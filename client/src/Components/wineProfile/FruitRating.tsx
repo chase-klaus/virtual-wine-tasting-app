@@ -29,7 +29,7 @@ function FruitRating({ fruit, updateFruit }: FruitRatingProps): JSX.Element {
   function threeSeconds() {
     setTimeout(() => {
       setShowRatingExplaination(false)
-    }, 2000);
+    }, 1000);
   }
 
   threeSeconds()
@@ -62,7 +62,7 @@ function FruitRating({ fruit, updateFruit }: FruitRatingProps): JSX.Element {
         <div className='profile__tasting__description__text'>
           <details onClick={() => hideOrDisplayImage()}>
             <summary>How to rate sweetness of wine</summary>
-            <p>Sweetness in Wine is derived from residual sugar (RS). Residual sugar is the leftover sweetness when not all the grape must is fermented into alcohol. We describe sweetness as a taste that ranges from bone-dry to very sweet. It is good to know that a technically dry wine can contain up to half a teaspoon of sugar per glass.</p>
+            <p>Sweetness in wine is derived from residual sugar (RS). Residual sugar is the leftover sweetness when not all the grape must is fermented into alcohol. We describe sweetness as a taste that ranges from bone-dry to very sweet. It is good to know that a technically dry wine can contain up to half a teaspoon of sugar per glass.</p>
           </details>
         </div>
         <img src={sugar} alt="lemon" className={statusImage === true ? '' : 'hidden__image'}></img></div>) : (<div>

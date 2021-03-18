@@ -18,7 +18,9 @@ const StyledRating = withStyles({
 
 interface OverallRatingProps {
   setValue?: (newValue: number ) => void,
-  submitRating: (newValue: number ) => void,
+  submitRating: (newValue: number ) => void,  
+  notes: string,
+  updateNotes: (newValue: string) => void,
   wineList: {
     userId: number
     winery: string
@@ -34,7 +36,7 @@ interface OverallRatingProps {
   };
 }
 
-export default function OverallRating({submitRating, wineList }: OverallRatingProps): JSX.Element {
+export default function OverallRating({submitRating, wineList, notes, updateNotes }: OverallRatingProps): JSX.Element {
 
   const [value, setValue] = useState<number>(2);
 
@@ -52,6 +54,15 @@ export default function OverallRating({submitRating, wineList }: OverallRatingPr
     } catch(err) {
       console.log('error creating new tasting');
     }
+  }
+
+  function handleChangeNotes(event: React.ChangeEvent<any>) {
+    setValue(value);
+    updateNotes(event.target.value);
+  }
+  function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    updateNotes(notes);  
   }
 
   return (
@@ -77,9 +88,20 @@ export default function OverallRating({submitRating, wineList }: OverallRatingPr
           Do all the traits in the wine balance one another? A wine that is out of balance 
           will have characteristics that overpower other flavors in the wine, for example a jarring 
           acidic flavor that dominates the taste. Take your time with wine that you enjoy. Identify what 
-          you prefer about them over other wines. You will find yourself to be more articulate when seeking 
-          new wine. We use a simple 5-point rating system with focus on drinkability
+          you prefer about them over other wines.We use a simple 5-point rating system with focus on drinkability
         </div>
+        <textarea className='textArea' value={notes} onChange={handleChangeNotes} placeholder='Any final thoughts...'></textarea>
+        <button type="submit" className="save__notes__btn" onClick= {handleSubmit}>save your notes</button>
+        {/* <form onSubmit={handleSubmit}>
+            <input
+              className="notes__input"
+              type="text"
+              value={notes}
+              onChange={handleChangeNotes}
+              placeholder="What else did you taste?"
+            ></input>
+            <button type="submit" className="save__notes__btn">save your notes</button>
+          </form> */}
         <div>
           <Link to="/winelist" className='add__wine__button'>
             <button onClick={() => postTastingToDB()}>add wine to your wine list</button>

@@ -4,7 +4,7 @@ import sequelize from './index';
 
 const Tasting = sequelize.define('tasting', {
   userId: {
-    type:DataTypes.NUMBER, 
+    type:DataTypes.INTEGER, 
     allowNull:false
   },
     winery: {

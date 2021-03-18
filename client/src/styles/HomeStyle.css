@@ -1,0 +1,31 @@
+/* HOME */
+
+.home__container {
+  /* border: solid; */
+  width: 50em;
+  height: 35em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home__headline {
+  margin-bottom: 1em;
+  font-size: 3em;
+}
+
+.home__img {
+  position: relative;
+  height: 7em;
+}
+
+.home__sub__container {
+  display: flex;
+  flex-direction: row;
+  margin: 1em;
+  /* border: solid; */
+}
+
+.p__home {
+  text-align: justify;
+}

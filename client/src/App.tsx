@@ -6,6 +6,7 @@ import WineList from "./Components/WineList/WineList";
 import Login from "./Components/Login/Login";
 import User from "./Components/User/User";
 import Home from "./Components/Home/Home";
+import auth from "./utils/auth";
 
 interface ISetUser {
   mail: string;
@@ -14,16 +15,23 @@ interface ISetUser {
 }
 
 export default function App(): JSX.Element {
+  const initialState = auth.isAuthenticated(); 
+  const [isAuthenticated, setIsAuthenticated] = useState(initialState);
   const [user, setUser] = useState<ISetUser>({ mail: '', password: '', userId: 0 });
   const [userValidated, setUserValidated] = useState<boolean>(false);
   function loginUser(mail:string, password:string, userId:number, validated:boolean) {
     setUser({ mail: mail, password: password, userId: userId });
     setUserValidated(validated);
+    // setIsAuthenticated(validated);
+  }
+  function authUser(isAuth:boolean) {
+    setIsAuthenticated(isAuth)
   }
 
   return (
     <Router>
-      {userValidated ? (<div className="grid__container">
+      {isAuthenticated ? (<div className="grid__container">
+      {/* {userValidated ? (<div className="grid__container"> */}
         <nav className="navbar sticky">
           <div className='underline__navbar'>
             <Link to="/" className='link__navbar__header'>Virtual Wine Tasting</Link>
@@ -46,14 +54,14 @@ export default function App(): JSX.Element {
             <Route path="/tasting">
               <WineTasting user={user} />
             </Route>
-            <Route path="/winelist"><WineList user={user} /></Route>
+            <Route path="/winelist"><WineList user={user}/></Route>
             <Route path="/user">{<User user={user} />}</Route>
             <Route path="/">{<Home />}</Route>
           </Switch>
         </div>
       </div>) : 
       (<div className="login__container">
-        <Login loginUser={loginUser} />
+        <Login loginUser={loginUser} authUser={authUser}/>
       </div>)}
     </Router>
   );

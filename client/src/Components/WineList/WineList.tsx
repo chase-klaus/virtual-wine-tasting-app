@@ -30,32 +30,39 @@ interface WineListProps {
 }
 
 export default function WineList({user}: WineListProps) {
-
   const [wineListDB, setWineListDB] = useState<IWineProps[]>([])
-
   // get tastings belonging to the user logged in
-  useEffect(() => {
-    const userId = user.userId
-    ApiService.getTastings(userId)
-      .then((res) => setWineListDB(res))
-      // console.log(wineListDB.length)
-  }, []);
+  const fetchDB = async () => {
+    const res = await ApiService.getTastings(user.userId);
+    setWineListDB(res);
+  }
 
-
-  // i want it to reload whenever there is a change to the winelist, but it gives me an infinite loop
   // useEffect(() => {
-  //   setWineListDB([])
-  // }, [wineListDB])
+  //   fetchDB();
+  // }, []);
+  useEffect(() => {
+    fetchDB();
+  }, [wineListDB]);
+
+
+  // useEffect(() => {
+  //   const userId = user.userId
+  //   const wineDB = ApiService.getTastings(userId)
+  //   function setWineDB(wineDB) {
+  //     setWineListDB(wineDB)}
+  //     // ((data) => setWineListDB(data))
+  //     // console.log(wineListDB.length)
+  // }, [wineListDB]);
 
   return (<div>
     {wineListDB ? <div className="wine__card__container">
-      {wineListDB.map((wine) => {
+      {wineListDB.map((wine, index) => {
         return (
         <div>
           {/* <WineCard wine={wine}/> */}
           {/* do we HAVE to include the userId and id here?  */}
           <WineCard
-            key={wine.id}
+            key={index}
             id={wine.id}
             userId={wine.userId}
             winery={wine.winery} 

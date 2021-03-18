@@ -1,0 +1,113 @@
+/* WINE CARDS & WINE LIST*/
+.wine__card__container {
+  margin: 3em;
+  display: flex;
+  flex-direction: row;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  overflow-y: scroll;
+}
+
+.wine__card {
+  border: solid 2px;
+  margin: 1em;
+  width: 15em;
+  height: 28em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bin__delete__symbol {
+  position: relative;
+  width: 1.5em;
+  right: -6em;
+  top: 0em;
+  cursor: pointer;
+}
+
+.bottle__image {
+  transition: opacity .5s, visibility .5s;
+  width: 10em;
+}
+
+.wrapper__wine__card:hover .bottle__image {
+  opacity: 0;
+  transition: opacity .5s, visibility .5s;
+}
+
+.wrapper__wine__card:hover .wine__card__more__information {
+  opacity: 1;
+  transition: opacity .5s, visibility .5s;
+}
+
+.image__wrap__wine__card {
+  position: relative;
+  height: 200px;
+  width: 257px;
+  top: -4em;
+  left: -2em;
+}
+
+.wine__card__more__information {
+  position: absolute;
+  top: -2em;
+  bottom: 0;
+  left: 3em;
+  right: 0;
+  color: black;
+  opacity: 0;
+  transition: opacity .5s, visibility .5s;
+}
+
+.hover__profile__wine__card {
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+.hover__flavors__wine__card {
+  font-size: 1.3em;
+  font-weight: 700;
+}
+
+.wine__card__headline {
+  margin: 0.2em;
+  position: relative;
+  top: -6em;
+}
+
+.wine__card__winery {
+  margin: 0.5em;
+  font-size: 1.6em;
+  font-weight: 900;
+  text-align: center;
+}
+
+.wine__card__year {
+  margin: 0.5em;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.wine__card__rating{
+  position: relative;
+  top: -4em;
+  left: 4em;
+}
+
+.wine__card__grape {
+  margin: 0.5em;
+  font-size: 1.2em;
+  text-align: center; 
+}
+
+.wine__card__flavors {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.single__flavor {
+  word-spacing:3px;
+}

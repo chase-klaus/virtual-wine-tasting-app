@@ -1,0 +1,42 @@
+/* FINAL OVERALL RATING */
+.centered__container__overallrating {
+  position: fixed;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 70vw;
+  min-height: 55vh;
+  box-shadow: 0 0 10px -1px #3333;
+  border: solid;
+}
+
+.rating__box__headline__subheadline {
+  text-align: center;
+  padding: 2em;
+}
+
+.rating__box {
+  padding: 2em;
+  text-align: center;
+}
+
+.overall__text {
+  font-size: 1.1em;
+  margin: 2em;
+  margin-left: 4em;
+  margin-right: 4em;
+  text-align: justify;
+}
+
+.add__wine__button{
+  position: absolute;
+  right: 50vh;
+  bottom: 2em;
+}
+
+/* Show all wines button */
+.show__all__wines {
+  position: absolute;
+  right: 45vh;
+  bottom: 1.5em;
+}

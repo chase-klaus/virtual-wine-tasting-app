@@ -50,7 +50,7 @@ function TanninsRating({ tannins, updateTannins }: TanninsRatingsProps): JSX.Ele
 
           <details onClick={() => hideOrDisplayImage()}>
             <summary>How to rate tannins in wine</summary>
-            <p>To taste tannin in wine, focus on the texture on your toungue. A high tannin wine will remove proteins from your tongue, causing a drying and puckering sensation. This sensation is often described as 'grippy'. High tannin wines act as palate cleanser to rich, fatty meats, cheeses and pasta dishes.</p>
+            <p>To taste tannin in wine, focus on the texture on your tongue. A high tannin wine will remove proteins from your tongue, causing a drying and puckering sensation. This sensation is often described as 'grippy'. High tannin wines act as a palate cleanser for rich, fatty meats, cheeses and pasta dishes.</p>
           </details>
         </div>
       </div>
