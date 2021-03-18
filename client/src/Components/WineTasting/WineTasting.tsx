@@ -170,7 +170,7 @@ export default function WineTasting({ user }: WineTastingProps) {
               onChange={handleChangeYear}
               placeholder="Type in year ..."
             ></input>
-            <select value={grape} onChange={handleChangeGrape} name="grape" className="start__tasting__input">
+            <select data-testid='select' value={grape} onChange={handleChangeGrape} name="grape" className="start__tasting__input">
               <option disabled={true} value="">select grape variety</option>
               <option value='malbec'>Malbec</option>
               <option value='merlot'>Merlot</option>

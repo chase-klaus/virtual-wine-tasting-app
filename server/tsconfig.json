@@ -3,16 +3,16 @@
     "target": "es6",
     "module": "commonjs",
     "outDir": "dist",
-    "types": [],
+    "types": ["node", "jest"],
     "allowJs": true,
     "noImplicitAny": true,
     "strict": true,
     "esModuleInterop": true
   },
   "include": [
-    "src/**/*", 
+    "__test__/**/*", 
     "**.ts"
-],
+, "jest.config.js"],
   "exclude": [
     "node_modules"
   ]

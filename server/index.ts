@@ -15,15 +15,16 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
 
-app.get("/", (res: express.Response) => {
-  res.json({ message: "Hello from the Express Server 🍷" });
-});
+// app.get("/test", (req:express.Request, res:express.Response) => {
+//   res.status(200).send('hello');
+// });
 
 sequelize.sync();
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
+const serverApp = app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}🍷.`);
 });
 
-export default app;
+
+module.exports = serverApp;

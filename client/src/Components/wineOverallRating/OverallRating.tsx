@@ -31,7 +31,7 @@ interface OverallRatingProps {
     dominantFlavors: string[]
     arrPossibleFlavors: string[]
     overallRating: number
-      };
+  };
 }
 
 export default function OverallRating({submitRating, wineList }: OverallRatingProps): JSX.Element {

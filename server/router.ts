@@ -2,13 +2,15 @@ import * as express from 'express';
 const router = express.Router();
 import * as tastings from './controllers/tasting.controller';
 import * as user from './controllers/user.controller';
-  
+
   // TASTINGS
   // Create a new Tasting
   router.post("/api/tastings", tastings.create);
 
   // Retrieve all tastings ??? id=userId?? belonging to the user logged in?
   router.get("/api/tastings/:id", tastings.findAll);
+  
+  router.get("/test", user.test)
 
   // Delete a Tasting with id
   router.delete("/api/tastings/:id", tastings.deleteTasting);
@@ -29,3 +31,4 @@ import * as user from './controllers/user.controller';
   router.get("/api/findByMail/:mail", user.findOneByMail)
 
 export default router;
+

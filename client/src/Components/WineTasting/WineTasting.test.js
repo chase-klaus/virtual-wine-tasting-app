@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, getByLabelText } from '@testing-library/react';
+import { render, screen, fireEvent, getByLabelText, getByTestId } from '@testing-library/react';
 import { BrowserRouter as Router } from "react-router-dom";
 import WineTasting from './WineTasting';
 
@@ -9,20 +9,19 @@ test('WineTasting page renders correctly', () => {
   getByPlaceholderText('Type in name of winery ...')
 })
 
-test('Allows user to enter inputs and move to next page', () => {
+test('Allows user to enter inputs and move to next page in testing', () => {
   const { getByText, getByPlaceholderText, getByLabelText } = render(<WineTasting />);
 
   const inputWineName = getByLabelText('New Wine Tasting');
-  fireEvent.change(inputWineName, {target:{value: 'New Wine input'}})
-
-  // input year
   const inputYear = getByPlaceholderText('Type in year ...');
+  const wineDropdown = screen.getByTestId('select');
+  
+  fireEvent.change(inputWineName, {target:{value: 'New Wine input'}})
   fireEvent.change(inputYear, {target:{value: 2001}})
+  fireEvent.change(wineDropdown, {target:{value:'malbec'}})
 
-  // input dropdown wine 
-  
-  
-  fireEvent.click(getByText('start tasting')); 
+  fireEvent.click(getByText('start tasting'));
 
-
+  const nextScreen = screen.getByText('rate fruit/sweet character of the wine')
+  expect(nextScreen).toBeInTheDocument();
 })

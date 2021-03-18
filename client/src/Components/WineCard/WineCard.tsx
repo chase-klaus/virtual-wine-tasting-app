@@ -24,10 +24,10 @@ interface IWineProps {
   winery:string, 
   year:number, 
   grape:string, 
-  fruit: string, 
-  acidity:string,
-  tannins: string,
-  body:string,
+  fruit: number, 
+  acidity:number,
+  tannins: number,
+  body:number,
   dominantFlavors:string[], 
   arrPossibleFlavors:string[], 
   // possibleFlavors:IPossibleFlavors,
@@ -39,16 +39,30 @@ export default function WineCard( wine:IWineProps ) {
   // eslint-disable-next-line
   const [value, setValue] = useState(wine.overallRating);
 
+const [wineListDB, setWineListDB] = useState<IWineProps[]>([])
+
+
   // when you delete something, make sure its deleted from the screen without having to refresh it
   // whenever the list of wine changes... 
   useEffect(()=>{
     setValue(wine.overallRating);
   }, [value])
 
+  useEffect(()=>{
+    ApiService.getTastings(wine.userId)
+      .then((res) => setWineListDB(res))
+  }, [setWineListDB])
+
+  function handleDelete (userId:number, wineId:number) {
+    ApiService.deleteTasting(wineId);
+    ApiService.getTastings(userId)
+      .then((res) => setWineListDB(res))
+  }
 
   return (
     <div className='wine__card'>
-      <div onClick={() => ApiService.deleteTasting(wine.id)} className="delete__btn__wine__card">
+      <div onClick={() => handleDelete(wine.userId, wine.id)} className="delete__btn__wine__card">
+      {/* <div onClick={() => ApiService.deleteTasting(wine.id)} className="delete__btn__wine__card"> */}
         <img src={bin} alt="bin delete sybol" className="bin__delete__symbol"/>
       </div>
       <div className="wrapper__wine__card">
@@ -60,7 +74,7 @@ export default function WineCard( wine:IWineProps ) {
 
         <div className="image__wrap__wine__card">
           <div>
-            <img alt="bottle" src={bottle}  id={wine.grape} className="bottle__image"/>
+            <img alt="bottle" src={bottle}  className="bottle__image"/>
           </div> 
           <div className="wine__card__more__information">
             <div className="hover__profile__wine__card">
@@ -76,7 +90,7 @@ export default function WineCard( wine:IWineProps ) {
               </div>
               <div className='wine__card__flavors'>
                 Possible Flavors: {wine.arrPossibleFlavors.map((flavor:string) => 
-                <div className='single__flavor'>{flavor}</div>)}
+                <div className='single__flavor'> {flavor + ' '}</div>)}
               </div>
             </div>
           </div>

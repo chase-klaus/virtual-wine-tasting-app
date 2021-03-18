@@ -1,5 +1,4 @@
 import "./App.css";
-// import * as React from 'react';
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import WineTasting from "./Components/WineTasting/WineTasting";
@@ -15,10 +14,8 @@ interface ISetUser {
 }
 
 export default function App(): JSX.Element {
-
   const [user, setUser] = useState<ISetUser>({ mail: '', password: '', userId: 0 });
   const [userValidated, setUserValidated] = useState<boolean>(false);
-
   function loginUser(mail:string, password:string, userId:number, validated:boolean) {
     setUser({ mail: mail, password: password, userId: userId });
     setUserValidated(validated);

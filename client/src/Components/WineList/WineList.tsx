@@ -16,10 +16,10 @@ interface IWineProps {
   winery:string, 
   year:number, 
   grape:string, 
-  fruit: string, 
-  acidity:string,
-  tannins: string,
-  body:string,
+  fruit: number, 
+  acidity:number,
+  tannins: number,
+  body:number,
   dominantFlavors:string[], 
   arrPossibleFlavors:string[],
   overallRating: number,
@@ -38,15 +38,16 @@ export default function WineList({user}: WineListProps) {
     const userId = user.userId
     ApiService.getTastings(userId)
       .then((res) => setWineListDB(res))
-  }, [])
-  
+      // console.log(wineListDB.length)
+  }, []);
+
+
   // i want it to reload whenever there is a change to the winelist, but it gives me an infinite loop
-  useEffect(() => {
-    setWineListDB([])
-  }, [setWineListDB])
+  // useEffect(() => {
+  //   setWineListDB([])
+  // }, [wineListDB])
 
   return (<div>
-
     {wineListDB ? <div className="wine__card__container">
       {wineListDB.map((wine) => {
         return (

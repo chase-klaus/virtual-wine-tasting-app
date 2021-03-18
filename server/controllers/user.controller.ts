@@ -14,6 +14,12 @@ export const create = async (req:Request, res:Response) => {
   }
 };
 
+
+
+export const test = async (req:Request, res:Response) => {
+    res.status(200).send('from router')
+}
+
 export async function findOne (req: Request, res: Response) {
   const id = req.params.id;
   try {

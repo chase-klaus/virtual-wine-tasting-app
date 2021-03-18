@@ -1,13 +1,13 @@
-{
-  "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "outDir":"dist",
-    "types": [],
-    "allowJs": true,
-    "noImplicitAny": true,
-    "strict": true
-  },
-  "include":[ "src/**/*"],
-  "exclude": ["node_modules"]
-}
+// {
+//   "compilerOptions": {
+//     "target": "es6",
+//     "module": "commonjs",
+//     "outDir":"dist",
+//     "types": [],
+//     "allowJs": true,
+//     "noImplicitAny": true,
+//     "strict": true
+//   },
+//   "include":[ "src/**/*"],
+//   "exclude": ["node_modules"]
+// }

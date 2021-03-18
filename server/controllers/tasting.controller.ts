@@ -16,8 +16,7 @@ import Tasting from '../models/tasting.model';
 // }
 // Create and Save a new Tasting
 export async function create(req: Request, res: Response) {
-  // Validate request
-  //if (!req.body.user) {
+
   if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!"
@@ -25,27 +24,28 @@ export async function create(req: Request, res: Response) {
     return;
   }
   // Create a Tasting
-  const tasting = {
-    userId: req.body.userId,
-    winery: req.body.winery,
-    year: req.body.year,
-    grape: req.body.grape,
-    fruit: req.body.fruit,
-    acidity: req.body.acidity,
-    tannins: req.body.tannins,
-    body: req.body.year,
-    dominantFlavors: req.body.dominantFlavors,
-    arrPossibleFlavors: req.body.arrPossibleFlavors,
-    overallRating: req.body.overallRating,
-  };
+  // const tasting = {
+  //   userId: req.body.userId,
+  //   winery: req.body.winery,
+  //   year: req.body.year,
+  //   grape: req.body.grape,
+  //   fruit: req.body.fruit,
+  //   acidity: req.body.acidity,
+  //   tannins: req.body.tannins,
+  //   body: req.body.year,
+  //   dominantFlavors: req.body.dominantFlavors,
+  //   arrPossibleFlavors: req.body.arrPossibleFlavors,
+  //   overallRating: req.body.overallRating,
+  // };
   // const {userId, winery, year, grape, fruit, acidity, tannins, body, dominantFlavors, arrPossibleFlavors, overallRating} = req.body;
-
+  
   // Save Tasting in the database
   try {
-    console.log(tasting);
-    const data = await Tasting.create(tasting)
+    console.log(req.body);
+    const data = await Tasting.create({...req.body})
     res.status(200).json(data);
   } catch (error) {
+    console.log(req.body)
           res.status(500).send({
         message:"Some error occurred while creating the Tasting."
       });
