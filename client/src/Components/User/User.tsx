@@ -1,3 +1,4 @@
+import { AnyARecord } from 'node:dns';
 import * as React from 'react';
 
 interface IUser {
@@ -9,7 +10,7 @@ interface IUser {
 interface IUserProps {
   user: IUser
 }
-export default function User({user}:IUserProps) {
+export default function User({user}: any ) {
 
   return (
   <div>

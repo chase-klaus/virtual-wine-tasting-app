@@ -8,7 +8,12 @@ import cors from 'cors';
 const app = express();
 import sequelize from './models';
 
-app.use(cors());
+const corsConfig = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+};
+
+app.use(cors(corsConfig));
 
 app.use(express.json());
 

@@ -28,7 +28,7 @@ interface WineListProps {
   user: IUser
 }
 
-export default function WineList({user}: WineListProps) {
+export default function WineList({user}: any) {
 
   const [wineListDB, setWineListDB] = useState<IWineProps[]>([])
 

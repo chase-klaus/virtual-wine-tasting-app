@@ -46,14 +46,25 @@ function postUser(options: { mail: string, password: string }) {
 }
 
 function login(options: { mail: string, password: string }) {
-  axios.post(url + '/api/login', options)
+  return axios.post(url + '/api/login', options)
     .then(function (response) {
       console.log(response);
+      return response.data;
     })
     .catch(function (error) {
       console.log(error);
-    });
+    })
 }
+// return fetch(`${url}/login`, {
+//   method: 'POST',
+//   credentials: 'include',
+//   mode: 'cors',
+//   headers: { 'Content-Type': 'application/json' },
+//   body: JSON.stringify(user),
+// })
+//   .then((res) => res.json())
+//   .catch((err) => console.log(err));
+
 
 async function getUsers() {
   try {

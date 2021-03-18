@@ -13,26 +13,30 @@ export const create = async (req: Request, res: Response) => {
   try {
     if (req.body.password === "") throw new Error();
     const hash = await bcrypt.hash(req.body.password, 10);
-    const newUser: any = User.create({
+    const newUser: any = await User.create({
       mail: req.body.mail,
       password: hash,
     });
+    console.log(newUser);
     const { id } = await newUser.save();
     const token = jwt.sign({ id }, SECRET_KEY)
-    res.status(201).send({ token });
+    res.status(200).send({ token });
   } catch (error) {
+    console.log(error);
     res.status(500).send({ error, message: "Could not create user" });
   }
 };
 
 export async function login(req: Request, res: Response) {
+  console.log(req.body);
   const { password } = req.body;
   try {
     const user: any = await User.findOne( {where: { mail: req.body.mail }});
     const validatePass: any = await bcrypt.compare(password, user.password);
     if (!validatePass) throw new Error();
     const token = jwt.sign({ id: user.id }, SECRET_KEY);
-    res.status(200).send({ token });
+    console.log(token);
+    res.status(200).send(token);
   } catch (err) {
     res.status(500);
     console.log(err, "Could not login");

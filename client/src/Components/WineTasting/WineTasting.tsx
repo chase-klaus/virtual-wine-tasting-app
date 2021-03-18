@@ -42,7 +42,7 @@ interface WineTastingProps {
 //   handleChangeGrape: (event: React.ChangeEvent<HTMLInputElement>) => void
 // }
 
-export default function WineTasting({ user }: WineTastingProps) {
+export default function WineTasting({ user }: any) {
 
   const [startTasting, setStartTasting] = useState<boolean>(false);
   const [winery, setWinery] = useState<string>('');
