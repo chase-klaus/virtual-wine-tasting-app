@@ -42,7 +42,12 @@ export default function OverallRating({ submitRating, wineList, notes, updateNot
 
   function postTastingToDB() {
     console.log("wineList before post", wineList)
-    ApiService.postTasting(wineList);
+    const newWine = ApiService.postTasting(wineList);
+    try {
+      console.log(newWine)
+    } catch (err) {
+      console.log('error creating new tasting');
+    }
   }
 
   const [value, setValue] = useState<number>(2);

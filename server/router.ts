@@ -11,7 +11,7 @@ import * as user from './controllers/user.controller';
   router.get("/api/tastings/:id", tastings.findAll);
 
   // Delete a Tasting with id
-  // router.delete("/api/tastings/:id", tastings.delete);
+  router.delete("/api/tastings/:id", tastings.deleteTasting);
 
   // Update a Tasting with id
   // router.put("/:id", tastings.update);

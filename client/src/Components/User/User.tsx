@@ -4,14 +4,14 @@ import * as React from 'react';
 interface IUser {
   mail:string, 
   password:string, 
-  userId:number
+  id:number
 }
 
 interface IUserProps {
   user: IUser
 }
 export default function User({user}: IUserProps ) {
-
+  console.log(user);
   return (
   <div>
     <div className="centered__container__user">
@@ -20,7 +20,7 @@ export default function User({user}: IUserProps ) {
       </div>
       <div className="user__data">
         <div>username: {user.mail}</div>
-        <div>userId: {user.userId}</div>
+        <div>userId: {user.id}</div>
         {/* <button onClick={() => console.log(user)}></button> */}
         <div onClick={() => window.location.reload()} className="logout__btn">logout here</div>
       </div>

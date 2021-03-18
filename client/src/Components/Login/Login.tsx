@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/index';
@@ -29,7 +29,6 @@ const initialState = {
 };
 
 export default function Login(props) {
-  console.log(props);
   // LOGIN - STATES
   // const [mail, setMail] = useState("");
   // const [password, setPassword] = useState("");
@@ -37,7 +36,7 @@ export default function Login(props) {
   // const [isRegistered, setIsRegistered] = useState(false);
   // const [passwordFromDB, setPasswordFromDB] = useState("");
   // const [users, setUsers] = useState([])
-  const [user, setUser] = useState(initialState);
+  // const [user, setUser] = useState(initialState);
 
   // REGISTRATION - STATES
   const [newMail, setNewMail] = useState("");
@@ -76,7 +75,7 @@ export default function Login(props) {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setUser((prevState) => ({
+    props.setUser((prevState) => ({
       ...prevState,
       [name]: value
     }));
@@ -84,22 +83,27 @@ export default function Login(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { mail, password } = user;
+    const { mail, password } = props.user;
     const newUser = { mail, password };
     const res: any = await ApiService.login(newUser);
     if (res.error) {
       alert(`${res.message}`);
-      setUser(initialState);
+      props.setUser(initialState);
     } else {
-      const token = res;
+      const { token, user } = res;
       localStorage.setItem('token', token);
       props.setIsAuthenticated(true);
-      // auth.login();
+      console.log(user);
+      props.setUser({ id: res.user.id, mail: res.user.mail });
     }
   }
 
+  useEffect(() => {
+    console.log(props.user)
+  }, [props.user])
+
   function validateForm() {
-    return !user.mail || !user.password;
+    return !props.user.mail || !props.user.password;
   }
 
   //REGISTRATION - FUNCTIONS
@@ -141,7 +145,7 @@ export default function Login(props) {
               className='input__login'
               type="text"
               name="mail"
-              value={user.mail}
+              value={props.user.mail}
               onChange={handleChange}
               placeholder="Type in your user name ..."
             ></input>
@@ -149,7 +153,7 @@ export default function Login(props) {
               className='input__login'
               type="password"
               name="password"
-              value={user.password}
+              value={props.user.password}
               onChange={handleChange}
               placeholder="Type in your password ..."
             ></input>

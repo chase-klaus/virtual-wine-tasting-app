@@ -11,7 +11,7 @@ import OverallRating from "../wineOverallRating/OverallRating";
 interface IUser {
   mail: string;
   password: string;
-  userId: number;
+  id: number;
   // user: any
 }
 
@@ -35,14 +35,15 @@ type TypeDominantFlavors = IFlavors<string[]>;
 type TypePossibleFlavors = IFlavors<IPossibleFlavors>;
 
 interface WineTastingProps {
-  user: IUser;
+  user: any;
+  setIsAuthenticated: any;
 }
 
 // interface IChangeGrapeProps {
 //   handleChangeGrape: (event: React.ChangeEvent<HTMLInputElement>) => void
 // }
 
-export default function WineTasting({ user }: any) {
+export default function WineTasting({ user }: WineTastingProps) {
 
   const [startTasting, setStartTasting] = useState<boolean>(false);
   const [winery, setWinery] = useState<string>('');
@@ -55,8 +56,8 @@ export default function WineTasting({ user }: any) {
   const [acidity, setAcidity] = useState<number | null>(0);
   const [possibleFlavors, setPossibleFlavors] = useState<any>({});
   const [dominantFlavors, setDominantFlavors] = useState<any>([]);
-  const [wineList, setWineList] = useState<any>({});
   const [notes, setNotes] = useState<string>('');
+  const [wineList, setWineList] = useState<any>({});
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -137,7 +138,7 @@ export default function WineTasting({ user }: any) {
 
     setWineList(
       {
-        userId: user.userId,
+        userId: user.id,
         winery: winery,
         year: year,
         grape: grape,

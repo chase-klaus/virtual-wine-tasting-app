@@ -48,7 +48,6 @@ function postUser(options: { mail: string, password: string }) {
 function login(options: { mail: string, password: string }) {
   return axios.post(url + '/api/login', options)
     .then(function (response) {
-      console.log(response);
       return response.data;
     })
     .catch(function (error) {

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 interface IUser {
   mail:string, 
   password:string, 
-  userId:number
+  id:number
 }
 
 interface IWineProps {
@@ -34,7 +34,7 @@ export default function WineList({user}: any) {
 
   useEffect(() => {
     console.log(user);
-    const userId = user.userId;
+    const userId = user.id;
     ApiService.getTastings(userId)
       .then((res) => setWineListDB(res))
   }, [])

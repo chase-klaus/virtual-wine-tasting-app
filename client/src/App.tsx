@@ -13,15 +13,13 @@ import auth from "./utils/auth";
 interface ISetUser {
   mail: string;
   password: string;
-  userId: number;
+  id: number;
 }
 
 export default function App(): JSX.Element {
   const initialState = auth.isAuthenticated();
   const [isAuthenticated, setIsAuthenticated] = useState(initialState);
-
-  const [user, setUser] = useState<ISetUser>({ mail: '', password: '', userId: 0 });
-
+  const [user, setUser] = useState<ISetUser>({ mail: '', password: '', id: 0 });
   return (
     <Router>
       {isAuthenticated ? (<div className="grid__container">
@@ -47,7 +45,7 @@ export default function App(): JSX.Element {
             <Route
               path="/tasting"
               render={(user) => (
-                <WineTasting user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} />
+                <WineTasting user={user} setIsAuthenticated={setIsAuthenticated} />
               )}
             />
             <Route
@@ -67,7 +65,7 @@ export default function App(): JSX.Element {
         </div>
       </div>) :
         (<div className="login__container">
-          <Login user={user} setIsAuthenticated={setIsAuthenticated} />
+          <Login setUser={setUser} user={user} setIsAuthenticated={setIsAuthenticated} />
         </div>)}
     </Router>
   );

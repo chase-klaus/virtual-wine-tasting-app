@@ -17,7 +17,6 @@ export const create = async (req: Request, res: Response) => {
       mail: req.body.mail,
       password: hash,
     });
-    console.log(newUser);
     const { id } = await newUser.save();
     const token = jwt.sign({ id }, SECRET_KEY)
     res.status(200).send({ token });
@@ -35,8 +34,7 @@ export async function login(req: Request, res: Response) {
     const validatePass: any = await bcrypt.compare(password, user.password);
     if (!validatePass) throw new Error();
     const token = jwt.sign({ id: user.id }, SECRET_KEY);
-    console.log(token);
-    res.status(200).send(token);
+    res.status(200).send({token, user});
   } catch (err) {
     res.status(500);
     console.log(err, "Could not login");
@@ -45,10 +43,14 @@ export async function login(req: Request, res: Response) {
 
 export async function findOneByMail(req: Request, res: Response) {
   const mail = req.params.mail;
+  const user = await User.findOne({ where: { mail: mail } });
   try {
-    const user = await User.findOne({ where: { mail: mail } });
-    res.json(user);
-    res.status(200);
+    if (user) {
+      res.json(user);
+      res.status(200);
+    } else {
+      res.status(400).send({ message: "No user with that email "})
+    }
   } catch (err) {
     res.status(500);
     console.log(err, "Error retrieving User with mail= " + mail);
@@ -66,3 +68,8 @@ export const findAllUsers = async (req: Request, res: Response) => {
     console.log(err, "Some error occurred while retrieving users.");
   }
 };
+
+
+export const test = async (req:Request, res:Response) => {
+  res.status(200).send('from router')
+}
