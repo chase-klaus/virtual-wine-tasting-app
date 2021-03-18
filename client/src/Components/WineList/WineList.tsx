@@ -33,8 +33,8 @@ export default function WineList({user}: any) {
   const [wineListDB, setWineListDB] = useState<IWineProps[]>([])
 
   useEffect(() => {
-    console.log(user);
     const userId = user.id;
+    console.log(userId);
     ApiService.getTastings(userId)
       .then((res) => setWineListDB(res))
   }, [])
